@@ -4,6 +4,7 @@ import { ThemeProvider } from '@emotion/react'
 import { themes } from './theme/theme'
 import BurgerMenu from './components/BurgerMenu/BurgerMenu'
 import Burger from './components/BurgerMenu/Burger'
+import Header from './components/Header/Header'
 
 function App() {
   const [theme, /* setTheme */] = useState(themes.light);
@@ -15,8 +16,7 @@ function App() {
 
   return (
   <ThemeProvider theme={theme}>
-      {/* <Button variant="contained" onClick={() => handleTheme(themes.light)}>Light</Button>
-      <Button variant="contained" onClick={() => handleTheme(themes.dark)}>Dark</Button> */}
+    <Header />
     <section>
       <Burger open={open} setOpen={setOpen} />
       <BurgerMenu open={open}/>
