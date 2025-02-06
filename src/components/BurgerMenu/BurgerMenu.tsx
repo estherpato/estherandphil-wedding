@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { styled } from '@mui/material';
+import { styled, Switch } from '@mui/material';
 
 const StyledMenu = styled('nav')<{ open: boolean }>`
-display: flex;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   background: ${({ theme }) => (theme.palette.primary.main)};
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
   height: 100vh;
@@ -19,13 +19,24 @@ display: flex;
     width: 100%;
   }
 
+  ul {
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  li {
+    padding: 2rem 0;
+    list-style: none;
+  }
+
   a {
     font-size: 2rem;
     text-transform: uppercase;
-    padding: 2rem 0;
     font-weight: bold;
     letter-spacing: 0.5rem;
-    color: #0d0c1d;
+    color: ${({ theme }) => (theme.palette.text.primary)};
     text-decoration: none;
     transition: color 0.3s linear;
 
@@ -33,10 +44,17 @@ display: flex;
       font-size: 1.5rem;
       text-align: center;
     }
+  }
+`;
 
-    &:hover {
-      color: #343078;
-    }
+const StyledSwitchWrapper = styled('div')`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  & img {
+    width: 32px;
+    aspect-ratio: 1 / 1;
   }
 `;
 
@@ -54,6 +72,11 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({open}) => {
         <li><a href="#">Schedule</a></li>
         <li><a href="#">RSVP</a></li>
       </ul>
+      <StyledSwitchWrapper>
+        <img src="/cherry-blossom.png" alt="Light Mode" />
+        <Switch color="secondary"></Switch>
+        <img src="/rock.png" alt="Dark Mode" />
+      </StyledSwitchWrapper>
     </StyledMenu>
   );
 }
