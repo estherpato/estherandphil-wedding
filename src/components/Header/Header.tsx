@@ -55,6 +55,7 @@ const StyledHero = styled('div')`
   left: 0;
   bottom: 3rem;
   padding: 0 2rem;
+  width: 100%;
 `
 
 const Header = () => {

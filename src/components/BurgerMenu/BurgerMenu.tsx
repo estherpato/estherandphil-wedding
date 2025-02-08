@@ -60,9 +60,11 @@ const StyledSwitchWrapper = styled('div')`
 
 type BurgerMenuProps = {
   open: boolean;
+  switchChecked: boolean;
+  setSwitchChecked: (checked: boolean) => void;
 }
 
-const BurgerMenu: React.FC<BurgerMenuProps> = ({open}) => {
+const BurgerMenu: React.FC<BurgerMenuProps> = ({open, switchChecked, setSwitchChecked}) => {
   return (
     <StyledMenu open={open}>
       <ul>
@@ -74,7 +76,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({open}) => {
       </ul>
       <StyledSwitchWrapper>
         <img src="/cherry-blossom.png" alt="Light Mode" />
-        <Switch color="secondary"></Switch>
+        <Switch color="secondary" checked={switchChecked} onChange={() => setSwitchChecked(!switchChecked)} />
         <img src="/rock.png" alt="Dark Mode" />
       </StyledSwitchWrapper>
     </StyledMenu>
