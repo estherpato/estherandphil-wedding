@@ -1,8 +1,10 @@
-import { styled } from '@mui/material';
+import { styled, Theme } from '@mui/material';
+import { FC, useEffect } from 'react';
 
-const StyledHeader = styled('header')`
-  background: linear-gradient(rgba(255, 179, 200, 0.5), rgba(0, 0, 0, 0.5)),
-              url('/background.jpg');
+const StyledHeader = styled('header')<{activeTheme: string}>`
+  background: ${({ activeTheme }) => (activeTheme === 'light' ?
+    `linear-gradient(rgba(255, 179, 200, 0.5), rgba(0, 0, 0, 0.5)), url('background_light.jpg')` :
+    `linear-gradient(rgba(255, 179, 200, 0.5), rgba(0, 0, 0, 0.5)), url('background_dark.jpg')`)};
   background-size: cover;
   background-position: center;
   display: flex;
@@ -58,9 +60,19 @@ const StyledHero = styled('div')`
   width: 100%;
 `
 
-const Header = () => {
+type HeaderProps = {
+  activeTheme: Theme;
+}
+
+const Header: FC<HeaderProps> = ({activeTheme}) => {
+  const theme = activeTheme.palette.mode === 'light' ? 'light' : 'dark';
+
+  useEffect(() => {
+    console.log(activeTheme);
+
+  }, [activeTheme])
   return (
-    <StyledHeader>
+    <StyledHeader activeTheme={theme}>
       <StyledDate>
         <span>06 · 06 · 2026</span>
       </StyledDate>

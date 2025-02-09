@@ -18,7 +18,7 @@ function App() {
 
   return (
   <ThemeProvider theme={theme}>
-    <Header />
+    <Header activeTheme={theme} />
     <section>
       <Burger open={open} setOpen={setOpen} />
       <BurgerMenu open={open} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
