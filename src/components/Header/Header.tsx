@@ -1,10 +1,10 @@
 import { styled, Theme } from '@mui/material';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
-const StyledHeader = styled('header')<{activeTheme: string}>`
+const StyledHeader = styled('header') <{ activeTheme: string }>`
   background: ${({ activeTheme }) => (activeTheme === 'light' ?
     `linear-gradient(rgba(255, 179, 200, 0.5), rgba(0, 0, 0, 0.5)), url('background_light.jpg')` :
-    `linear-gradient(rgba(255, 179, 200, 0.5), rgba(0, 0, 0, 0.5)), url('background_dark.jpg')`)};
+    `linear-gradient(rgba(196, 4, 12, 0.5), rgba(0, 0, 0, 0.5)), url('background_dark.jpg')`)};
   background-size: cover;
   background-position: center;
   display: flex;
@@ -24,28 +24,29 @@ const StyledHeader = styled('header')<{activeTheme: string}>`
   }
 `;
 
-const StyledDate = styled('div')`
+const StyledDate = styled('div') <{ activeTheme: string }>`
   color: ${({ theme }) => (theme.palette.text.secondary)};
   position: relative;
   font-size: 1.5rem;
   margin-top: 6rem;
+  font-family: 'Libre Baskerville';
 
   &::before, &::after {
-    content: '';
+    content: ${({ activeTheme }) => (activeTheme === 'light' ? "''" : "'⚡'")};
     display: block;
     position: absolute;
-    border-top: ${({ theme }) => (`1px solid ${theme.palette.text.secondary}`)};
-    width: 50px;
+    border-top: ${({ theme, activeTheme }) => (activeTheme === 'light' && `1px solid ${theme.palette.text.secondary}`)};
+    width: ${({ activeTheme }) => (activeTheme === 'light' && '50px')};;
     top: 50%;
     transform: translateY(-50%)
   }
 
   &::before {
-    left: -60px;
+    left: ${({ activeTheme }) => (activeTheme === 'light' ? '-60px' : "-40px")};
   }
 
   &::after {
-    right: -60px;
+    right: ${({ activeTheme }) => (activeTheme === 'light' ? '-60px' : "-40px")};;
   }
 `
 
@@ -60,26 +61,38 @@ const StyledHero = styled('div')`
   width: 100%;
 `
 
+const StyledImage = styled('img')`
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 type HeaderProps = {
   activeTheme: Theme;
 }
 
-const Header: FC<HeaderProps> = ({activeTheme}) => {
+const Header: FC<HeaderProps> = ({ activeTheme }) => {
   const theme = activeTheme.palette.mode === 'light' ? 'light' : 'dark';
 
-  useEffect(() => {
-    console.log(activeTheme);
-
-  }, [activeTheme])
   return (
     <StyledHeader activeTheme={theme}>
-      <StyledDate>
+      <StyledDate activeTheme={theme}>
         <span>06 · 06 · 2026</span>
       </StyledDate>
-      <h1>Esther <br/>& <br/>Phil</h1>
-      <StyledHero>
-        <p><q>Ich hätte mich auch mit geschlossenen Augen in dich verliebt</q></p>
-      </StyledHero>
+      {
+        theme === 'light' &&
+        <h1>Esther <br />& <br />Phil</h1>
+      }
+      {
+        theme === 'light' &&
+        <StyledHero>
+          <p><q>Ich hätte mich auch mit geschlossenen Augen in dich verliebt</q></p>
+        </StyledHero>
+      }
+      {
+        theme === 'dark' && <StyledImage src="/rock-names.png" alt="Esther & Phil" />
+      }
     </StyledHeader>
   )
 };
