@@ -1,22 +1,17 @@
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from '@emotion/react'
 import { themes } from './theme/theme'
-import BurgerMenu from './components/BurgerMenu/BurgerMenu'
 import Burger from './components/BurgerMenu/Burger'
+import BurgerMenu from './components/BurgerMenu/BurgerMenu'
 import Header from './components/Header/Header'
-import Countdown from './components/Countdown/Countdown'
-import { styled } from '@mui/material'
-
-const StyledMain = styled('main')`
-  position: relative;
-`;
+import Main from './components/Main/Main'
 
 function App() {
   const [theme, setTheme] = useState(themes.light);
   const [open, setOpen] = useState<boolean>(false);
   const [switchChecked, setSwitchChecked] = useState(false);
 
-  const deadline = "June, 6, 2026";
+
 
   useEffect(() => {
     const newTheme = switchChecked ? themes.dark : themes.light;
@@ -30,9 +25,7 @@ function App() {
       <Burger open={open} setOpen={setOpen} />
       <BurgerMenu open={open} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
     </section>
-    <StyledMain>
-      <Countdown deadline={deadline}/>
-    </StyledMain>
+    <Main />
   </ThemeProvider>
   )
 }

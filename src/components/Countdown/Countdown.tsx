@@ -8,19 +8,6 @@ const CounterContainer = styled('section')`
   gap: 2rem;
   font-family: 'Libre Baskerville';
   font-size: 14px;
-  background: ${({ theme }) => theme.palette.secondary.main};
-  --mask:
-    radial-gradient(111.8px at 50% 150px,#000 99%,#0000 101%) calc(50% - 100px) 0/200px 51% repeat-x,
-    radial-gradient(111.8px at 50% -100px,#0000 99%,#000 101%) 50% 50px/200px calc(51% - 50px) repeat-x,
-    radial-gradient(111.8px at 50% calc(100% - 150px),#000 99%,#0000 101%) calc(50% - 100px) 100%/200px 51% repeat-x,
-    radial-gradient(111.8px at 50% calc(100% + 100px),#0000 99%,#000 101%) 50% calc(100% - 50px)/200px calc(51% - 50px) repeat-x;
-  -webkit-mask: var(--mask);
-          mask: var(--mask);
-  padding: 80px;
-  position: absolute;
-  width: 100%;
-  top: -62px;
-  left: 0;
 `;
 
 const StyledCountNumber = styled('div')`
