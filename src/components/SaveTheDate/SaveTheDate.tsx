@@ -1,9 +1,15 @@
-import { Divider, styled } from "@mui/material";
+import { Button, Divider, Stack, styled } from "@mui/material";
+import { FC } from "react";
+import { ThemeProps } from "../../App";
 
-const StyledSaveTheDate = styled('section')`
+const calendarURL = 'https://www.google.com/calendar/render?action=TEMPLATE&text=Esther%26Phil+Wedding%21+%F0%9F%92%8D&dates=20260606T160000Z%2Fundefined';
+const locationURL = "https://www.google.com/maps/place//data=!4m2!3m1!1s0xd405191559f99fb:0xfd2f25e4b81c3e8d?sa=X&ved=1t:8290&ictx=111";
+
+const StyledSaveTheDate = styled('section')<{activeTheme: string}>`
   font-family: 'Libre Baskerville';
-  padding: 2rem;
+  padding: 0 2rem;
   line-height: 1.5;
+  margin-top: 1rem;
 
   & h2 {
     font-family: 'Cookie';
@@ -37,8 +43,13 @@ const StyledSaveTheDate = styled('section')`
     }
   }
 
+  & a {
+    margin: 0 auto;
+  }
+
   & .divider {
-    background-image: url('cherry-blossom.png');
+    background-image: ${({activeTheme}) => activeTheme === 'light' ?
+                      "url('cherry-blossom.png')" : "url('rock.png')"} ;
     background-position: center;
     background-size: contain;
     width: 40px;
@@ -47,9 +58,9 @@ const StyledSaveTheDate = styled('section')`
   }
 `
 
-const SaveTheDate = () => {
+const SaveTheDate: FC<ThemeProps> = ({activeTheme}) => {
   return (
-    <StyledSaveTheDate>
+    <StyledSaveTheDate activeTheme={activeTheme}>
       <h2>Save the date!</h2>
       <Divider />
 
@@ -57,6 +68,9 @@ const SaveTheDate = () => {
 
       <p className="subtitle question"><strong>When?</strong></p>
       <p className="description">6th of June, 2026 · 18:00</p>
+      <Stack sx={{marginTop: '1rem'}}>
+        <Button variant="outlined" href={calendarURL}>Save on your calendar</Button>
+      </Stack>
 
       <div className="divider"/>
 
@@ -64,6 +78,9 @@ const SaveTheDate = () => {
       <p className="description"><strong>Hotel Toros de Guisando</strong></p>
       <p className="small-description top">Travesía del Paseo de Recoletos, 53</p>
       <p className="small-description">05270 · El Tiemblo</p>
+      <Stack sx={{marginTop: '1rem'}}>
+        <Button variant="outlined" href={locationURL}>See location</Button>
+      </Stack>
 
     </StyledSaveTheDate>
   );

@@ -1,31 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ThemeProvider } from '@emotion/react'
-import { themes } from './theme/theme'
 import Burger from './components/BurgerMenu/Burger'
 import BurgerMenu from './components/BurgerMenu/BurgerMenu'
 import Header from './components/Header/Header'
 import Main from './components/Main/Main'
+import { useActiveTheme } from './hooks/useActiveTheme'
+
+export type ThemeProps = {
+  activeTheme: string;
+}
 
 function App() {
-  const [theme, setTheme] = useState(themes.light);
+
   const [open, setOpen] = useState<boolean>(false);
-  const [switchChecked, setSwitchChecked] = useState(false);
-
-
-
-  useEffect(() => {
-    const newTheme = switchChecked ? themes.dark : themes.light;
-    setTheme(newTheme);
-  }, [switchChecked])
+  const {theme, activeTheme, switchChecked, setSwitchChecked} = useActiveTheme();
 
   return (
   <ThemeProvider theme={theme}>
-    <Header activeTheme={theme} />
+    <Header activeTheme={activeTheme} />
     <section>
       <Burger open={open} setOpen={setOpen} />
       <BurgerMenu open={open} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
     </section>
-    <Main />
+    <Main activeTheme={activeTheme} />
   </ThemeProvider>
   )
 }

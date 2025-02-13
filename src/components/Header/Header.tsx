@@ -1,5 +1,6 @@
-import { styled, Theme } from '@mui/material';
+import { styled } from '@mui/material';
 import { FC } from 'react';
+import { ThemeProps } from '../../App';
 
 const StyledHeader = styled('header') <{ activeTheme: string }>`
   background: ${({ activeTheme }) => (activeTheme === 'light' ?
@@ -68,30 +69,24 @@ const StyledImage = styled('img')`
   transform: translateX(-50%);
 `;
 
-type HeaderProps = {
-  activeTheme: Theme;
-}
-
-const Header: FC<HeaderProps> = ({ activeTheme }) => {
-  const theme = activeTheme.palette.mode === 'light' ? 'light' : 'dark';
-
+const Header: FC<ThemeProps> = ({ activeTheme }) => {
   return (
-    <StyledHeader activeTheme={theme}>
-      <StyledDate activeTheme={theme}>
+    <StyledHeader activeTheme={activeTheme}>
+      <StyledDate activeTheme={activeTheme}>
         <span>06 · 06 · 2026</span>
       </StyledDate>
       {
-        theme === 'light' &&
+        activeTheme === 'light' &&
         <h1>Esther <br />& <br />Phil</h1>
       }
       {
-        theme === 'light' &&
+        activeTheme === 'light' &&
         <StyledHero>
           <p><q>Ich hätte mich auch mit geschlossenen Augen in dich verliebt</q></p>
         </StyledHero>
       }
       {
-        theme === 'dark' && <StyledImage src="/rock-names.png" alt="Esther & Phil" />
+        activeTheme === 'dark' && <StyledImage src="/rock-names.png" alt="Esther & Phil" />
       }
     </StyledHeader>
   )
