@@ -57,7 +57,7 @@ const Schedule: FC = () => {
           ))}
         </TableBody>
       </Table>
-
+      <p>*Remember that times are approximate.</p>
     </StyledSchedule>
   );
 };
