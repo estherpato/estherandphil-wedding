@@ -7,7 +7,7 @@ const StyledBox = styled('div')`
   -webkit-mask: var(--mask);
           mask: var(--mask);
   background: rgb(255,255,255);
-  padding: 2rem 0 6rem;
+  padding-bottom: 6rem;
 `;
 
 export const StyledBoxPrimary = styled(StyledBox)`

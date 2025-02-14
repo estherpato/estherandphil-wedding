@@ -2,6 +2,7 @@ import { styled } from "@mui/material";
 import { FC, useState, useEffect } from "react";
 
 const CounterContainer = styled('section')`
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
