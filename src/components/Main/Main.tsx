@@ -5,6 +5,7 @@ import { ThemeProps } from "../../App";
 import { StyledBoxPrimary, StyledBoxSecondary } from "./StyledBox";
 import OurStory from "../OurStory/OurStory";
 import Schedule from "../Schedule/Schedule";
+import Rsvp from "../RSVP/Rsvp";
 
 const Main: FC<ThemeProps> = ({activeTheme}) => {
   const deadline = "June, 6, 2026";
@@ -21,6 +22,7 @@ const Main: FC<ThemeProps> = ({activeTheme}) => {
       <StyledBoxSecondary>
         <Schedule />
       </StyledBoxSecondary>
+      <Rsvp />
     </main>
   );
 }

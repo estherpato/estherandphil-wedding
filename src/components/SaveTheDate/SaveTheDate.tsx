@@ -64,7 +64,7 @@ const SaveTheDate: FC<ThemeProps> = ({activeTheme}) => {
       <h2>Save the date!</h2>
       <Divider />
 
-      <p className="subtitle">Join us as we seal our love with a "yes" that will last a lifetime</p>
+      <p className="subtitle">Join us as we seal our love with a <strong>"yes"</strong> that will last a lifetime</p>
 
       <p className="subtitle question"><strong>When?</strong></p>
       <p className="description">6th of June, 2026 · 18:00</p>

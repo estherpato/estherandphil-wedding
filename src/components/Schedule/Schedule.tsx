@@ -1,5 +1,4 @@
 import { Divider, styled, Table, TableBody, TableCell, TableRow} from "@mui/material";
-import { create } from "@mui/material/styles/createTransitions";
 import { FC } from "react";
 
 const StyledSchedule = styled('section')`
@@ -17,12 +16,21 @@ const StyledSchedule = styled('section')`
     font-size: 2rem;
   }
 
-  & .description {
+  & table th, & table td {
     font-family: 'Libre Baskerville';
-    line-height: 1.5;
-    text-align: center;
-    margin-top: 0.85rem;
   }
+
+  & table td {
+    font-size: 0.85rem;
+  }
+
+  & .foot-note {
+    font-family: 'Libre Baskerville';
+    font-size: 0.75rem;
+    margin-top: 1rem;
+    color: ${({theme}) => theme.palette.text.disabled}
+  }
+
 `
 
 const createData = (id: number, time: string, description: string) => {
@@ -33,7 +41,7 @@ const Schedule: FC = () => {
   const rows = [
     createData(1, '18:00', 'Civil ceremony in the hotel garden'),
     createData(1, '19:00', 'Cocktail reception in the hotel garden'),
-    createData(1, '20:30', 'Dinner in the "El Patio" lounge'),
+    createData(1, '20:30', 'Dinner in "El Patio" lounge'),
     createData(1, '22:00', 'Party and dancing until the body can take it'),
   ]
 
@@ -57,7 +65,7 @@ const Schedule: FC = () => {
           ))}
         </TableBody>
       </Table>
-      <p>*Remember that times are approximate.</p>
+      <p className="foot-note">*Remember that times are approximate.</p>
     </StyledSchedule>
   );
 };
