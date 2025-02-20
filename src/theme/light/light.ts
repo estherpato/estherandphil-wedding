@@ -11,7 +11,7 @@ export const theme = createTheme({
     },
     text: {
       primary: '#000C2B',
-      secondary: '#F2F4F5',
+      secondary: '#000C2B',
       disabled: '#6C6C6C'
     }
   },
@@ -19,5 +19,14 @@ export const theme = createTheme({
     h1: {
       fontFamily: 'Cookie',
     },
+    h2: {
+      fontFamily: 'Cookie',
+    },
+    body1: {
+      fontFamily: 'Libre Baskerville'
+    },
+    body2: {
+      fontFamily: 'Bad Script'
+    }
   },
 })
