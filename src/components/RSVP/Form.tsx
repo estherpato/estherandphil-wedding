@@ -42,11 +42,11 @@ const AttendanceForm = () => {
   const [loading, setLoading] = useState(false);
   const [dialog, setDialog] = useState({ title: '', open: false, message: "" });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     /* if (!validateForm()) return; */
     setLoading(true);

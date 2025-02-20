@@ -48,7 +48,7 @@ const Countdown: FC<CounterProps> = ({deadline}) => {
   };
 
   const getTimeUntil = (deadline: string) => {
-    const time = Date.parse(deadline) - Date.parse(new Date());
+    const time = Date.parse(deadline) - new Date().getTime();
     if (time < 0) {
       setDays(0);
       setHours(0);
