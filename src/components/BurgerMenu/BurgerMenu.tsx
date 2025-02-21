@@ -75,9 +75,9 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({open, switchChecked, setSwitchCh
         <li><a href="#">RSVP</a></li>
       </ul>
       <StyledSwitchWrapper>
-        <img src="/cherry-blossom.png" alt="Light Mode" />
+        <img src="cherry-blossom.png" alt="Light Mode" />
         <Switch color="secondary" checked={switchChecked} onChange={() => setSwitchChecked(!switchChecked)} />
-        <img src="/rock.png" alt="Dark Mode" />
+        <img src="rock.png" alt="Dark Mode" />
       </StyledSwitchWrapper>
     </StyledMenu>
   );

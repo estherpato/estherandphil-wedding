@@ -1,5 +1,5 @@
 import { Divider, styled, Typography } from "@mui/material";
-import AttendanceForm from "./Form";
+import AttendanceForm from "./AttendanceForm";
 
 const StyledRsvp = styled('section')`
   padding: 0 2rem 2rem;

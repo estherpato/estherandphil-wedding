@@ -86,7 +86,7 @@ const Header: FC<ThemeProps> = ({ activeTheme }) => {
         </StyledHero>
       }
       {
-        activeTheme === 'dark' && <StyledImage src="/rock-names.png" alt="Esther & Phil" />
+        activeTheme === 'dark' && <StyledImage src="rock-names.png" alt="Esther & Phil" />
       }
     </StyledHeader>
   )
