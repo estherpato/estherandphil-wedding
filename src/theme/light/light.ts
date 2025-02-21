@@ -13,6 +13,10 @@ export const theme = createTheme({
       primary: '#000C2B',
       secondary: '#000C2B',
       disabled: '#6C6C6C'
+    },
+    info: {
+      main: '#6C6C6C',
+      light: '#f6f7f8',
     }
   },
   typography: {

@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { FC, useState, useEffect } from "react";
 
 const CounterContainer = styled('section')`
@@ -72,27 +72,27 @@ const Countdown: FC<CounterProps> = ({deadline}) => {
     <CounterContainer>
       <StyledCountNumber>
         <div>
-          <span>{leading0(days)}</span>
+          <Typography>{leading0(days)}</Typography>
         </div>
-        <span className="label">{parseInt(leading0(days)) > 1 ? 'days' : 'day'}</span>
+        <Typography className="label">{parseInt(leading0(days)) > 1 ? 'days' : 'day'}</Typography>
       </StyledCountNumber>
       <StyledCountNumber>
         <div>
-          <span>{leading0(hours)}</span>
+          <Typography>{leading0(hours)}</Typography>
         </div>
-        <span className="label">{parseInt(leading0(hours)) > 1 ? 'hours' : 'hour'}</span>
+        <Typography className="label">{parseInt(leading0(hours)) > 1 ? 'hours' : 'hour'}</Typography>
       </StyledCountNumber>
       <StyledCountNumber>
         <div>
-          <span>{leading0(minutes)}</span>
+          <Typography>{leading0(minutes)}</Typography>
         </div>
-        <span className="label">{parseInt(leading0(minutes)) > 1 ? 'minutes' : 'minute'}</span>
+        <Typography className="label">mins</Typography>
       </StyledCountNumber>
       <StyledCountNumber>
         <div>
-          <span>{leading0(seconds)}</span>
+          <Typography>{leading0(seconds)}</Typography>
         </div>
-        <span className="label">{parseInt(leading0(seconds)) > 1 ? 'seconds' : 'second'}</span>
+        <Typography className="label">secs</Typography>
       </StyledCountNumber>
     </CounterContainer>
   );

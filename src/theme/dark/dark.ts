@@ -11,8 +11,26 @@ export const theme = createTheme({
     },
     text: {
       secondary: '#000C2B',
-      primary: '#F2F4F5',
+      primary: '#000C2B',
       disabled: '#6C6C6C'
+    },
+    info: {
+      main: '#6C6C6C',
+      light: '#f6f7f8',
+    }
+  },
+  typography: {
+    h1: {
+      fontFamily: 'Pirata One',
+    },
+    h2: {
+      fontFamily: 'Pirata One',
+    },
+    body1: {
+      fontFamily: 'Roboto Condensed'
+    },
+    body2: {
+      fontFamily: 'Caveat'
     }
   },
 })

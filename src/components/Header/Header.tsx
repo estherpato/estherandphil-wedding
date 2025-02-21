@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled, Typography } from '@mui/material';
 import { FC } from 'react';
 import { ThemeProps } from '../../App';
 
@@ -13,7 +13,7 @@ const StyledHeader = styled('header') <{ activeTheme: string }>`
   align-items: center;
   position: relative;
   height: 100vh;
-  color: ${({ theme }) => (theme.palette.text.secondary)};
+  color: ${({ theme }) => (theme.palette.info.light)};
   padding: 2rem;
 
   & h1 {
@@ -26,17 +26,20 @@ const StyledHeader = styled('header') <{ activeTheme: string }>`
 `;
 
 const StyledDate = styled('div') <{ activeTheme: string }>`
-  color: ${({ theme }) => (theme.palette.text.secondary)};
+
   position: relative;
-  font-size: 1.5rem;
   margin-top: 6rem;
-  font-family: 'Libre Baskerville';
+
+  & .date {
+    font-size: 1.5rem;
+    color: ${({ theme }) => (theme.palette.info.light)};
+  }
 
   &::before, &::after {
     content: ${({ activeTheme }) => (activeTheme === 'light' ? "''" : "'⚡'")};
     display: block;
     position: absolute;
-    border-top: ${({ theme, activeTheme }) => (activeTheme === 'light' && `1px solid ${theme.palette.text.secondary}`)};
+    border-top: ${({ theme, activeTheme }) => (activeTheme === 'light' && `1px solid ${theme.palette.info.light}`)};
     width: ${({ activeTheme }) => (activeTheme === 'light' && '50px')};;
     top: 50%;
     transform: translateY(-50%)
@@ -73,7 +76,7 @@ const Header: FC<ThemeProps> = ({ activeTheme }) => {
   return (
     <StyledHeader activeTheme={activeTheme}>
       <StyledDate activeTheme={activeTheme}>
-        <span>06 · 06 · 2026</span>
+        <Typography className="date">06 · 06 · 2026</Typography>
       </StyledDate>
       {
         activeTheme === 'light' &&

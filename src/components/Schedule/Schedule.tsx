@@ -1,23 +1,14 @@
-import { Divider, styled, Table, TableBody, TableCell, TableRow} from "@mui/material";
+import { styled, Table, TableBody, TableCell, TableRow, Typography} from "@mui/material";
 import { FC } from "react";
+import { SectionTitle } from "../common/SectionTitle";
 
 const StyledSchedule = styled('section')`
   padding: 0 2rem;
 
-  & h2 {
-    font-family: 'Cookie';
-    text-align: center;
-    font-size: 4rem;
-  }
-
   & h3 {
-    font-family: 'Bad Script';
     text-align: center;
     font-size: 2rem;
-  }
-
-  & table th, & table td {
-    font-family: 'Libre Baskerville';
+    margin-top: -1rem;
   }
 
   & table td {
@@ -25,7 +16,6 @@ const StyledSchedule = styled('section')`
   }
 
   & .foot-note {
-    font-family: 'Libre Baskerville';
     font-size: 0.75rem;
     margin-top: 1rem;
     color: ${({theme}) => theme.palette.text.disabled}
@@ -47,9 +37,9 @@ const Schedule: FC = () => {
 
   return (
     <StyledSchedule>
-      <h2>The Event</h2>
-      <h3>Ceremony & Reception</h3>
-      <Divider />
+      <SectionTitle component="h2" variant="h2">The Event</SectionTitle>
+      <Typography component="h3" variant="body2">Ceremony & Reception</Typography>
+
       <Table sx={{ minWidth: 300, marginTop: '1rem' }} aria-label="event schedule">
         <TableBody>
           {rows.map((row) => (
@@ -58,14 +48,14 @@ const Schedule: FC = () => {
               sx={{'&:last-child': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <strong>{row.time}</strong>
+                <Typography><strong>{row.time}</strong></Typography>
               </TableCell>
-              <TableCell align="left">{row.description}</TableCell>
+              <TableCell align="left"><Typography>{row.description}</Typography></TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <p className="foot-note">*Remember that times are approximate.</p>
+      <Typography className="foot-note">*Remember that times are approximate.</Typography>
     </StyledSchedule>
   );
 };

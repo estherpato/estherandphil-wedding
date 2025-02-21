@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, Switch } from '@mui/material';
+import { styled, Switch, Typography } from '@mui/material';
 
 const StyledMenu = styled('nav')<{ open: boolean }>`
   display: flex;
@@ -35,6 +35,7 @@ const StyledMenu = styled('nav')<{ open: boolean }>`
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: bold;
+    text-align: left;
     letter-spacing: 0.5rem;
     color: ${({ theme }) => (theme.palette.text.primary)};
     text-decoration: none;
@@ -68,11 +69,11 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({open, switchChecked, setSwitchCh
   return (
     <StyledMenu open={open}>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Save the date</a></li>
-        <li><a href="#">Our story</a></li>
-        <li><a href="#">Schedule</a></li>
-        <li><a href="#">RSVP</a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>Home</Typography></a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>Save the date</Typography></a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>Our story</Typography></a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>Schedule</Typography></a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>RSVP</Typography></a></li>
       </ul>
       <StyledSwitchWrapper>
         <img src="cherry-blossom.png" alt="Light Mode" />

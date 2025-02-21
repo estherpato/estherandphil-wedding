@@ -1,6 +1,7 @@
-import { Button, Divider, Stack, styled } from "@mui/material";
+import { Button, Stack, styled, Typography } from "@mui/material";
 import { FC } from "react";
 import { ThemeProps } from "../../App";
+import { SectionTitle } from "../common/SectionTitle";
 
 const calendarURL = 'https://www.google.com/calendar/render?action=TEMPLATE&text=Esther%26Phil+Wedding%21+%F0%9F%92%8D&dates=20260606T160000Z%2Fundefined';
 const locationURL = "https://www.google.com/maps/place//data=!4m2!3m1!1s0xd405191559f99fb:0xfd2f25e4b81c3e8d?sa=X&ved=1t:8290&ictx=111";
@@ -11,21 +12,10 @@ const StyledSaveTheDate = styled('section')<{activeTheme: string}>`
   line-height: 1.5;
   margin-top: 1rem;
 
-  & h2 {
-    font-family: 'Cookie';
-    text-align: center;
-    font-size: 4rem;
-  }
-
   & .subtitle {
     text-align: center;
-    font-family: 'Bad Script';
-    font-size: 1.25rem;
+    font-size: 2rem;
     margin-top: 1.5rem;
-
-    &.question {
-      font-size: 1.5rem;
-    }
   }
 
   & .description {
@@ -61,23 +51,22 @@ const StyledSaveTheDate = styled('section')<{activeTheme: string}>`
 const SaveTheDate: FC<ThemeProps> = ({activeTheme}) => {
   return (
     <StyledSaveTheDate activeTheme={activeTheme}>
-      <h2>Save the date!</h2>
-      <Divider />
+      <SectionTitle component="h2" variant="h2">Save the date!</SectionTitle>
 
-      <p className="subtitle">Join us as we seal our love with a <strong>"yes"</strong> that will last a lifetime</p>
+      <Typography className="subtitle" variant="body2">Join us as we seal our love with a <strong>"yes"</strong> that will last a lifetime</Typography>
 
-      <p className="subtitle question"><strong>When?</strong></p>
-      <p className="description">6th of June, 2026 · 18:00</p>
+      <Typography className="subtitle question" variant="body2"><strong>When?</strong></Typography>
+      <Typography className="description">6th of June, 2026 · 18:00</Typography>
       <Stack sx={{marginTop: '1rem'}}>
         <Button variant="outlined" href={calendarURL}>Save on your calendar</Button>
       </Stack>
 
       <div className="divider"/>
 
-      <p className="subtitle question"><strong>Where?</strong></p>
-      <p className="description"><strong>Hotel Toros de Guisando</strong></p>
-      <p className="small-description top">Travesía del Paseo de Recoletos, 53</p>
-      <p className="small-description">05270 · El Tiemblo</p>
+      <Typography className="subtitle question" variant="body2"><strong>Where?</strong></Typography>
+      <Typography className="description"><strong>Hotel Toros de Guisando</strong></Typography>
+      <Typography className="small-description top">Travesía del Paseo de Recoletos, 53</Typography>
+      <Typography className="small-description">05270 · El Tiemblo</Typography>
       <Stack sx={{marginTop: '1rem'}}>
         <Button variant="outlined" href={locationURL}>See location</Button>
       </Stack>

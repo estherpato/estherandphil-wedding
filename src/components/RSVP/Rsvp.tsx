@@ -1,14 +1,9 @@
-import { Divider, styled, Typography } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import AttendanceForm from "./AttendanceForm";
+import { SectionTitle } from "../common/SectionTitle";
 
 const StyledRsvp = styled('section')`
   padding: 0 2rem 2rem;
-
-  & h2 {
-    font-family: 'Cookie';
-    text-align: center;
-    font-size: 4rem;
-  }
 
   & form {
     margin-top: 1rem;
@@ -20,13 +15,8 @@ const Rsvp = () => {
 
   return (
     <StyledRsvp>
-      <Typography
-          sx={{lineHeight: 1.5, textAlign: 'center', mt: 1}}
-          component="h2"
-        >
-          RSVP
-        </Typography>
-      <Divider />
+      <SectionTitle component="h2" variant="h2">RSVP</SectionTitle>
+
       <div>
         <Typography
           sx={{lineHeight: 1.5, textAlign: 'center', mt: 1}}
