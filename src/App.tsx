@@ -24,10 +24,10 @@ function App() {
 
   return (
   <ThemeProvider theme={getTheme(mode)}>
-    <Header activeTheme={mode} />
+    <Header activeTheme={mode} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
     <section>
       <Burger open={open} setOpen={setOpen} />
-      <BurgerMenu open={open} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
+      <BurgerMenu open={open} />
     </section>
     <Main activeTheme={mode} />
   </ThemeProvider>

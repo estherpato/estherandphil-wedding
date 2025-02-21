@@ -1,8 +1,8 @@
-import { styled, Typography } from '@mui/material';
+import { styled, Switch, Typography } from '@mui/material';
 import { FC } from 'react';
-import { ThemeProps } from '../../App';
 
 const StyledHeader = styled('header') <{ activeTheme: string }>`
+  position: relative;
   background: ${({ activeTheme }) => (activeTheme === 'light' ?
     `linear-gradient(rgba(255, 179, 200, 0.5), rgba(0, 0, 0, 0.5)), url('background_light.jpg')` :
     `linear-gradient(rgba(196, 4, 12, 0.5), rgba(0, 0, 0, 0.5)), url('background_dark.jpg')`)};
@@ -25,10 +25,26 @@ const StyledHeader = styled('header') <{ activeTheme: string }>`
   }
 `;
 
-const StyledDate = styled('div') <{ activeTheme: string }>`
+const StyledSwitchWrapper = styled('div')`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  top: 4%;
+  right: 2rem;
+  background-color: ${({theme}) => theme.palette.primary.light};
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
 
+  & img {
+    width: 32px;
+    aspect-ratio: 1 / 1;
+  }
+`;
+
+const StyledDate = styled('div') <{ activeTheme: string }>`
   position: relative;
-  margin-top: 6rem;
+  margin-top: 7rem;
 
   & .date {
     font-size: 1.5rem;
@@ -72,9 +88,20 @@ const StyledImage = styled('img')`
   transform: translateX(-50%);
 `;
 
-const Header: FC<ThemeProps> = ({ activeTheme }) => {
+type HeaderProps = {
+  activeTheme: 'light' | 'dark';
+  switchChecked: boolean;
+  setSwitchChecked: (checked: boolean) => void;
+}
+
+const Header: FC<HeaderProps> = ({ activeTheme, switchChecked, setSwitchChecked }) => {
   return (
     <StyledHeader activeTheme={activeTheme}>
+      <StyledSwitchWrapper>
+        <img src="cherry-blossom.png" alt="Light Mode" />
+        <Switch color="secondary" checked={switchChecked} onChange={() => setSwitchChecked(!switchChecked)} />
+        <img src="rock.png" alt="Dark Mode" />
+      </StyledSwitchWrapper>
       <StyledDate activeTheme={activeTheme}>
         <Typography className="date">06 · 06 · 2026</Typography>
       </StyledDate>

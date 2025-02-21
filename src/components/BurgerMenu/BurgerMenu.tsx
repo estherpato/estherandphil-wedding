@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, Switch, Typography } from '@mui/material';
+import { styled, Typography } from '@mui/material';
 
 const StyledMenu = styled('nav')<{ open: boolean }>`
   display: flex;
@@ -48,24 +48,11 @@ const StyledMenu = styled('nav')<{ open: boolean }>`
   }
 `;
 
-const StyledSwitchWrapper = styled('div')`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  & img {
-    width: 32px;
-    aspect-ratio: 1 / 1;
-  }
-`;
-
 type BurgerMenuProps = {
   open: boolean;
-  switchChecked: boolean;
-  setSwitchChecked: (checked: boolean) => void;
 }
 
-const BurgerMenu: React.FC<BurgerMenuProps> = ({open, switchChecked, setSwitchChecked}) => {
+const BurgerMenu: React.FC<BurgerMenuProps> = ({open}) => {
   return (
     <StyledMenu open={open}>
       <ul>
@@ -75,11 +62,6 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({open, switchChecked, setSwitchCh
         <li><a href="#"><Typography component="span" fontSize={28}>Schedule</Typography></a></li>
         <li><a href="#"><Typography component="span" fontSize={28}>RSVP</Typography></a></li>
       </ul>
-      <StyledSwitchWrapper>
-        <img src="cherry-blossom.png" alt="Light Mode" />
-        <Switch color="secondary" checked={switchChecked} onChange={() => setSwitchChecked(!switchChecked)} />
-        <img src="rock.png" alt="Dark Mode" />
-      </StyledSwitchWrapper>
     </StyledMenu>
   );
 }
