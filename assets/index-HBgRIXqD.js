@@ -254,16 +254,8 @@ export default theme;`}function Mc(t={},...r){const{breakpoints:i,mixins:a={},sp
       text-align: center;
     }
   }
-`,qb=oe("div")`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  & img {
-    width: 32px;
-    aspect-ratio: 1 / 1;
-  }
-`,Xb=({open:t,switchChecked:r,setSwitchChecked:i})=>w.jsxs(Qb,{open:t,children:[w.jsxs("ul",{children:[w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"Home"})})}),w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"Save the date"})})}),w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"Our story"})})}),w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"Schedule"})})}),w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"RSVP"})})})]}),w.jsxs(qb,{children:[w.jsx("img",{src:"cherry-blossom.png",alt:"Light Mode"}),w.jsx(Ib,{color:"secondary",checked:r,onChange:()=>i(!r)}),w.jsx("img",{src:"rock.png",alt:"Dark Mode"})]})]}),Zb=oe("header")`
+`,qb=({open:t})=>w.jsx(Qb,{open:t,children:w.jsxs("ul",{children:[w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"Home"})})}),w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"Save the date"})})}),w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"Our story"})})}),w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"Schedule"})})}),w.jsx("li",{children:w.jsx("a",{href:"#",children:w.jsx(Ee,{component:"span",fontSize:28,children:"RSVP"})})})]})}),Xb=oe("header")`
+  position: relative;
   background: ${({activeTheme:t})=>t==="light"?"linear-gradient(rgba(255, 179, 200, 0.5), rgba(0, 0, 0, 0.5)), url('background_light.jpg')":"linear-gradient(rgba(196, 4, 12, 0.5), rgba(0, 0, 0, 0.5)), url('background_dark.jpg')"};
   background-size: cover;
   background-position: center;
@@ -282,10 +274,24 @@ export default theme;`}function Mc(t={},...r){const{breakpoints:i,mixins:a={},sp
     font-family: 'Cookie';
     font-size: 5rem;
   }
-`,Jb=oe("div")`
+`,Zb=oe("div")`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  top: 4%;
+  right: 2rem;
+  background-color: ${({theme:t})=>t.palette.primary.light};
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
 
+  & img {
+    width: 32px;
+    aspect-ratio: 1 / 1;
+  }
+`,Jb=oe("div")`
   position: relative;
-  margin-top: 6rem;
+  margin-top: 7rem;
 
   & .date {
     font-size: 1.5rem;
@@ -323,7 +329,7 @@ export default theme;`}function Mc(t={},...r){const{breakpoints:i,mixins:a={},sp
   bottom: 3rem;
   left: 50%;
   transform: translateX(-50%);
-`,nE=({activeTheme:t})=>w.jsxs(Zb,{activeTheme:t,children:[w.jsx(Jb,{activeTheme:t,children:w.jsx(Ee,{className:"date",children:"06 · 06 · 2026"})}),t==="light"&&w.jsxs("h1",{children:["Esther ",w.jsx("br",{}),"& ",w.jsx("br",{}),"Phil"]}),t==="light"&&w.jsx(eE,{children:w.jsx("p",{children:w.jsx("q",{children:"Ich hätte mich auch mit geschlossenen Augen in dich verliebt"})})}),t==="dark"&&w.jsx(tE,{src:"rock-names.png",alt:"Esther & Phil"})]}),rE=oe("section")`
+`,nE=({activeTheme:t,switchChecked:r,setSwitchChecked:i})=>w.jsxs(Xb,{activeTheme:t,children:[w.jsxs(Zb,{children:[w.jsx("img",{src:"cherry-blossom.png",alt:"Light Mode"}),w.jsx(Ib,{color:"secondary",checked:r,onChange:()=>i(!r)}),w.jsx("img",{src:"rock.png",alt:"Dark Mode"})]}),w.jsx(Jb,{activeTheme:t,children:w.jsx(Ee,{className:"date",children:"06 · 06 · 2026"})}),t==="light"&&w.jsxs("h1",{children:["Esther ",w.jsx("br",{}),"& ",w.jsx("br",{}),"Phil"]}),t==="light"&&w.jsx(eE,{children:w.jsx("p",{children:w.jsx("q",{children:"Ich hätte mich auch mit geschlossenen Augen in dich verliebt"})})}),t==="dark"&&w.jsx(tE,{src:"rock-names.png",alt:"Esther & Phil"})]}),rE=oe("section")`
   margin-top: 2rem;
   display: flex;
   align-items: center;
@@ -450,4 +456,4 @@ justify-content: center;
   & form {
     margin-top: 1rem;
   }
-`,vE=()=>w.jsxs(yE,{children:[w.jsx(ul,{component:"h2",variant:"h2",children:"RSVP"}),w.jsxs("div",{children:[w.jsx(Ee,{sx:{lineHeight:1.5,textAlign:"center",mt:1},component:"p",variant:"body1",children:"We would love to see you there!"}),w.jsx(Ee,{sx:{lineHeight:1.5,textAlign:"center",mt:1},component:"p",variant:"body1",children:"Please register using the form below by simply adding your name and confirmation."})]}),w.jsx(gE,{})]}),SE=({activeTheme:t})=>w.jsxs("main",{children:[w.jsxs($m,{children:[w.jsx(oE,{deadline:"June, 6, 2026"}),w.jsx(lE,{activeTheme:t})]}),w.jsx(uE,{children:w.jsx(dE,{})}),w.jsx($m,{children:w.jsx(pE,{})}),w.jsx(vE,{})]}),xE=()=>{const[t,r]=R.useState("light"),[i,a]=R.useState(!1);return R.useEffect(()=>{r(i?"dark":"light")},[i]),{mode:t,switchChecked:i,setSwitchChecked:a}},wE=t=>zg({palette:{mode:t,primary:{main:t==="light"?"#92bd81":"#C4040C"},secondary:{main:t==="light"?"#ffb3c8":"#F9D22C"},text:{primary:"#000C2B",secondary:"#000C2B",disabled:"#6C6C6C"},info:{main:"#6C6C6C",light:"#f6f7f8"}},typography:{h1:{fontFamily:t==="light"?"Cookie":"Pirata One"},h2:{fontFamily:t==="light"?"Cookie":"Pirata One"},body1:{fontFamily:t==="light"?"Libre Baskerville":"Roboto Condensed"},body2:{fontFamily:t==="light"?"Bad Script":"Caveat"}}});function CE(){const[t,r]=R.useState(!1),{mode:i,switchChecked:a,setSwitchChecked:l}=xE();return R.useEffect(()=>{const c=document.querySelector("body");c&&(c.style.overflowY=t?"hidden":"scroll")},[t]),w.jsxs(Qv,{theme:wE(i),children:[w.jsx(nE,{activeTheme:i}),w.jsxs("section",{children:[w.jsx(oS,{open:t,setOpen:r}),w.jsx(Xb,{open:t,switchChecked:a,setSwitchChecked:l})]}),w.jsx(SE,{activeTheme:i})]})}av.createRoot(document.getElementById("root")).render(w.jsx(CE,{}));
+`,vE=()=>w.jsxs(yE,{children:[w.jsx(ul,{component:"h2",variant:"h2",children:"RSVP"}),w.jsxs("div",{children:[w.jsx(Ee,{sx:{lineHeight:1.5,textAlign:"center",mt:1},component:"p",variant:"body1",children:"We would love to see you there!"}),w.jsx(Ee,{sx:{lineHeight:1.5,textAlign:"center",mt:1},component:"p",variant:"body1",children:"Please register using the form below by simply adding your name and confirmation."})]}),w.jsx(gE,{})]}),SE=({activeTheme:t})=>w.jsxs("main",{children:[w.jsxs($m,{children:[w.jsx(oE,{deadline:"June, 6, 2026"}),w.jsx(lE,{activeTheme:t})]}),w.jsx(uE,{children:w.jsx(dE,{})}),w.jsx($m,{children:w.jsx(pE,{})}),w.jsx(vE,{})]}),xE=()=>{const[t,r]=R.useState("light"),[i,a]=R.useState(!1);return R.useEffect(()=>{r(i?"dark":"light")},[i]),{mode:t,switchChecked:i,setSwitchChecked:a}},wE=t=>zg({palette:{mode:t,primary:{main:t==="light"?"#92bd81":"#C4040C"},secondary:{main:t==="light"?"#ffb3c8":"#F9D22C"},text:{primary:"#000C2B",secondary:"#000C2B",disabled:"#6C6C6C"},info:{main:"#6C6C6C",light:"#f6f7f8"}},typography:{h1:{fontFamily:t==="light"?"Cookie":"Pirata One"},h2:{fontFamily:t==="light"?"Cookie":"Pirata One"},body1:{fontFamily:t==="light"?"Libre Baskerville":"Roboto Condensed"},body2:{fontFamily:t==="light"?"Bad Script":"Caveat"}}});function CE(){const[t,r]=R.useState(!1),{mode:i,switchChecked:a,setSwitchChecked:l}=xE();return R.useEffect(()=>{const c=document.querySelector("body");c&&(c.style.overflowY=t?"hidden":"scroll")},[t]),w.jsxs(Qv,{theme:wE(i),children:[w.jsx(nE,{activeTheme:i,switchChecked:a,setSwitchChecked:l}),w.jsxs("section",{children:[w.jsx(oS,{open:t,setOpen:r}),w.jsx(qb,{open:t})]}),w.jsx(SE,{activeTheme:i})]})}av.createRoot(document.getElementById("root")).render(w.jsx(CE,{}));
