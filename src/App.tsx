@@ -6,6 +6,7 @@ import Header from './components/Header/Header'
 import Main from './components/Main/Main'
 import { useActiveTheme } from './hooks/useActiveTheme'
 import { getTheme } from './theme/theme'
+import Footer from './components/Footer/Footer'
 
 
 export type ThemeProps = {
@@ -30,6 +31,7 @@ function App() {
       <BurgerMenu open={open} />
     </section>
     <Main activeTheme={mode} />
+    <Footer activeTheme={mode} />
   </ThemeProvider>
   )
 }

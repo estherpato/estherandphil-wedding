@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+TODO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Footer
+- Link the menu
+- Sticky menu
+- Make switch smaller
+- Add a different background color depending on the version
+- Change font sizes depending on the fonts light/dark
+- Fix form inputs on dark mode
 
-Currently, two official plugins are available:
+# Credits
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Icons
 
-## Expanding the ESLint configuration
+* [Sakura Icon by Flaticon](https://www.flaticon.es/iconos-gratis/sakura)
+* [Rock and roll Icon by Flaticon](https://www.flaticon.es/iconos-gratis/rock-and-roll)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Resources
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- [Submit a HTML form to Google Sheets](https://github.com/levinunnink/html-form-to-google-sheet)
+- [CSS Generators](https://css-generators.com/wavy-shapes/)
