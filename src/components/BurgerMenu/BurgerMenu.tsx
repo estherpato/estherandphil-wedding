@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, styled, Typography } from '@mui/material';
 import { useLanguage } from '../../hooks/useLanguage';
 import { LanguageType } from '../../enums/LanguageType.enum';
+import { useTranslation } from 'react-i18next';
 
 const StyledMenu = styled('nav') <{ open: boolean }>`
   display: flex;
@@ -56,6 +57,7 @@ type BurgerMenuProps = {
 const BurgerMenu: React.FC<BurgerMenuProps> = ({ open }) => {
   const [selectedLanguage, setSelectedLanguage] = React.useState<LanguageType>(LanguageType.ENGLISH);
   const { handleLanguageChange } = useLanguage();
+  const { t } = useTranslation();
 
   const handleChange = (event: SelectChangeEvent) => {
     const newLang = event.target.value as LanguageType;
@@ -66,11 +68,11 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ open }) => {
   return (
     <StyledMenu open={open}>
       <ul>
-        <li><a href="#"><Typography component="span" fontSize={28}>Home</Typography></a></li>
-        <li><a href="#"><Typography component="span" fontSize={28}>Save the date</Typography></a></li>
-        <li><a href="#"><Typography component="span" fontSize={28}>Our story</Typography></a></li>
-        <li><a href="#"><Typography component="span" fontSize={28}>Schedule</Typography></a></li>
-        <li><a href="#"><Typography component="span" fontSize={28}>RSVP</Typography></a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>{t('TITLES.HOME')}</Typography></a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>{t('TITLES.SAVE_THE_DATE')}</Typography></a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>{t('TITLES.OUR_STORY')}</Typography></a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>{t('TITLES.THE_EVENT')}</Typography></a></li>
+        <li><a href="#"><Typography component="span" fontSize={28}>{t('TITLES.RSVP')}</Typography></a></li>
       </ul>
       <FormControl fullWidth>
         <InputLabel id="language-select-label">Language / Idioma / Sprache</InputLabel>

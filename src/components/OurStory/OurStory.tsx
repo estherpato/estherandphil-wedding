@@ -1,6 +1,7 @@
-import { styled, Typography} from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { FC } from "react";
 import { SectionTitle } from "../common/SectionTitle";
+import { useTranslation } from "react-i18next";
 
 const StyledOurStory = styled('section')`
   padding: 0 2rem;
@@ -16,9 +17,11 @@ const StyledOurStory = styled('section')`
 `
 
 const OurStory: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <StyledOurStory>
-      <SectionTitle component="h2" variant="h2">Our story</SectionTitle>
+      <SectionTitle component="h2" variant="h2">{t('TITLES.OUR_STORY')}</SectionTitle>
 
       <Typography className="description">
         Although we officially met in 2016, it wasn't until 2020 that our paths
