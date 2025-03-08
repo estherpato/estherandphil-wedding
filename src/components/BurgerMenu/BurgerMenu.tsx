@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { styled, Typography } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, styled, Typography } from '@mui/material';
+import { useLanguage } from '../../hooks/useLanguage';
+import { LanguageType } from '../../enums/LanguageType.enum';
 
-const StyledMenu = styled('nav')<{ open: boolean }>`
+const StyledMenu = styled('nav') <{ open: boolean }>`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   background: ${({ theme }) => (theme.palette.primary.main)};
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
   height: 100vh;
@@ -52,7 +53,16 @@ type BurgerMenuProps = {
   open: boolean;
 }
 
-const BurgerMenu: React.FC<BurgerMenuProps> = ({open}) => {
+const BurgerMenu: React.FC<BurgerMenuProps> = ({ open }) => {
+  const [selectedLanguage, setSelectedLanguage] = React.useState<LanguageType>(LanguageType.ENGLISH);
+  const { handleLanguageChange } = useLanguage();
+
+  const handleChange = (event: SelectChangeEvent) => {
+    const newLang = event.target.value as LanguageType;
+    handleLanguageChange(newLang);
+    setSelectedLanguage(newLang);
+  }
+
   return (
     <StyledMenu open={open}>
       <ul>
@@ -62,6 +72,20 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({open}) => {
         <li><a href="#"><Typography component="span" fontSize={28}>Schedule</Typography></a></li>
         <li><a href="#"><Typography component="span" fontSize={28}>RSVP</Typography></a></li>
       </ul>
+      <FormControl fullWidth>
+        <InputLabel id="language-select-label">Language / Idioma / Sprache</InputLabel>
+        <Select
+          labelId="language-select-label"
+          id="language-select"
+          value={selectedLanguage}
+          label="Language / Idioma / Sprache"
+          onChange={handleChange}
+        >
+          <MenuItem value={LanguageType.ENGLISH}>🇬🇧 English</MenuItem>
+          <MenuItem value={LanguageType.SPANISH}>🇪🇸 Español</MenuItem>
+          <MenuItem value={LanguageType.GERMAN}>🇩🇪 Deutch</MenuItem>
+        </Select>
+      </FormControl>
     </StyledMenu>
   );
 }
