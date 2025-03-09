@@ -1,6 +1,7 @@
-import { styled, Typography} from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { FC } from "react";
 import { SectionTitle } from "../common/SectionTitle";
+import { useTranslation } from "react-i18next";
 
 const StyledOurStory = styled('section')`
   padding: 0 2rem;
@@ -16,29 +17,26 @@ const StyledOurStory = styled('section')`
 `
 
 const OurStory: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <StyledOurStory>
-      <SectionTitle component="h2" variant="h2">Our story</SectionTitle>
+      <SectionTitle component="h2" variant="h2" sx={{mb: 1}}>{t('TITLES.OUR_STORY')}</SectionTitle>
 
       <Typography className="description">
-        Although we officially met in 2016, it wasn't until 2020 that our paths
-        crossed again.
+        {t('OUR_STORY.P1')}
       </Typography>
       <Typography className="description">
-        The first steps were not easy and we spent them travelling between Madrid, El Tiemblo
-        and Berlin. Until 2023 when we decided to move to Spain for good.
+        {t('OUR_STORY.P2')}
       </Typography>
       <Typography className="description">
-        In October 2024, we left for Japan with empty suitcases and our hearts brimming with wishes.
-        We returned with full suitcases, two happy hearts and a ring on Esther's finger.
+        {t('OUR_STORY.P3')}
       </Typography>
       <Typography className="description">
-        Those who know us will know that our love for watching anime, reading manga and playing
-        video games brought us together; but it is our love for each other that keeps us going.
+        {t('OUR_STORY.P4')}
       </Typography>
       <Typography className="description">
-        On the 6th of June, we will take another step forward and officially unite our hearts,
-        and we are very happy that you will be a part of it.
+        {t('OUR_STORY.P5')}
       </Typography>
     </StyledOurStory>
   );

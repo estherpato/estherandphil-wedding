@@ -32,12 +32,12 @@ const StyledSwitchWrapper = styled('div')`
   position: absolute;
   top: 4%;
   right: 2rem;
-  background-color: ${({theme}) => theme.palette.primary.light};
-  padding: 0.5rem 1rem;
+  background-color: ${({ theme }) => theme.palette.primary.light};
+  padding: 0.25rem 0.5rem;
   border-radius: 50px;
 
   & img {
-    width: 32px;
+    width: 24px;
     aspect-ratio: 1 / 1;
   }
 `;

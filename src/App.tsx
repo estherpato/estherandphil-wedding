@@ -7,6 +7,8 @@ import Main from './components/Main/Main'
 import { useActiveTheme } from './hooks/useActiveTheme'
 import { getTheme } from './theme/theme'
 import Footer from './components/Footer/Footer'
+import LanguageProvider from './context/LanguageContext'
+import '../i18n.js';
 
 
 export type ThemeProps = {
@@ -16,7 +18,7 @@ export type ThemeProps = {
 function App() {
 
   const [open, setOpen] = useState<boolean>(false);
-  const {mode, switchChecked, setSwitchChecked} = useActiveTheme();
+  const { mode, switchChecked, setSwitchChecked } = useActiveTheme();
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -24,15 +26,17 @@ function App() {
   }, [open])
 
   return (
-  <ThemeProvider theme={getTheme(mode)}>
-    <Header activeTheme={mode} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
-    <section>
-      <Burger open={open} setOpen={setOpen} />
-      <BurgerMenu open={open} />
-    </section>
-    <Main activeTheme={mode} />
-    <Footer activeTheme={mode} />
-  </ThemeProvider>
+    <ThemeProvider theme={getTheme(mode)}>
+      <LanguageProvider>
+        <Header activeTheme={mode} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
+        <section>
+          <Burger open={open} setOpen={setOpen} />
+          <BurgerMenu open={open} />
+        </section>
+        <Main activeTheme={mode} />
+        <Footer activeTheme={mode} />
+      </LanguageProvider>
+    </ThemeProvider>
   )
 }
 
