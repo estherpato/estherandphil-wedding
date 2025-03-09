@@ -1,5 +1,6 @@
 import { styled, Typography } from "@mui/material";
 import { FC, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const CounterContainer = styled('section')`
   margin-top: 2rem;
@@ -36,12 +37,12 @@ type CounterProps = {
   deadline: string;
 }
 
-const Countdown: FC<CounterProps> = ({deadline}) => {
+const Countdown: FC<CounterProps> = ({ deadline }) => {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-
+  const { t } = useTranslation();
   const leading0 = (num: number) => {
     const result = num < 10 ? "0" + num : num;
     return result.toString();
@@ -74,25 +75,33 @@ const Countdown: FC<CounterProps> = ({deadline}) => {
         <div>
           <Typography>{leading0(days)}</Typography>
         </div>
-        <Typography className="label">{parseInt(leading0(days)) > 1 ? 'days' : 'day'}</Typography>
+        <Typography className="label">
+          {parseInt(leading0(days)) > 1 ? `${t('COUNTDOWN.DAYS')}` : `${t('COUNTDOWN.DAY')}`}
+        </Typography>
       </StyledCountNumber>
       <StyledCountNumber>
         <div>
           <Typography>{leading0(hours)}</Typography>
         </div>
-        <Typography className="label">{parseInt(leading0(hours)) > 1 ? 'hours' : 'hour'}</Typography>
+        <Typography className="label">
+          {parseInt(leading0(hours)) > 1 ? `${t('COUNTDOWN.HOURS')}` : `${t('COUNTDOWN.HOUR')}`}
+        </Typography>
       </StyledCountNumber>
       <StyledCountNumber>
         <div>
           <Typography>{leading0(minutes)}</Typography>
         </div>
-        <Typography className="label">mins</Typography>
+        <Typography className="label">
+          {parseInt(leading0(minutes)) > 1 ? `${t('COUNTDOWN.MINS')}` : `${t('COUNTDOWN.MIN')}`}
+        </Typography>
       </StyledCountNumber>
       <StyledCountNumber>
         <div>
           <Typography>{leading0(seconds)}</Typography>
         </div>
-        <Typography className="label">secs</Typography>
+        <Typography className="label">
+          {parseInt(leading0(seconds)) > 1 ? `${t('COUNTDOWN.SECS')}` : `${t('COUNTDOWN.SEC')}`}
+        </Typography>
       </StyledCountNumber>
     </CounterContainer>
   );

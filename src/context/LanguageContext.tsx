@@ -1,4 +1,4 @@
-import { createContext, FC, PropsWithChildren, useState } from "react";
+import { createContext, FC, PropsWithChildren, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LanguageType } from "../enums/LanguageType.enum";
 
@@ -17,6 +17,13 @@ const LanguageProvider: FC<PropsWithChildren> = ({ children }) => {
     i18n.changeLanguage(lng);
     setLanguage(lng);
   }
+
+  useEffect(() => {
+    const browserLanguage = window.navigator.language.split('-')[0];
+    if (browserLanguage) {
+      handleLanguageChange(browserLanguage as LanguageType);
+    }
+  }, []);
 
   const state = {
     language,
