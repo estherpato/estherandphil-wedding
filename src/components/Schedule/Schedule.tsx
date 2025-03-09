@@ -32,10 +32,10 @@ const Schedule: FC = () => {
   const { t } = useTranslation();
 
   const rows = [
-    createData(1, '18:00', 'Civil ceremony in the hotel garden'),
-    createData(2, '19:00', 'Cocktail reception in the hotel garden'),
-    createData(3, '20:30', 'Dinner in "El Patio" lounge'),
-    createData(4, '22:00', 'Party and dancing until the body can take it'),
+    createData(1, '18:00', t('SCHEDULE.ROW1')),
+    createData(2, '19:00', t('SCHEDULE.ROW2')),
+    createData(3, '20:30', t('SCHEDULE.ROW3')),
+    createData(4, '22:00', t('SCHEDULE.ROW4')),
   ]
 
   return (
@@ -58,7 +58,7 @@ const Schedule: FC = () => {
           ))}
         </TableBody>
       </Table>
-      <Typography className="foot-note">*Remember that times are approximate.</Typography>
+      <Typography className="foot-note">{t('SCHEDULE.NOTE')}</Typography>
     </StyledSchedule>
   );
 };

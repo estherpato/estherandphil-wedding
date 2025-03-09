@@ -2,10 +2,10 @@ import { styled, Typography } from "@mui/material";
 import { ThemeProps } from "../../App";
 import { FC } from "react";
 
-const StyledFooter = styled('footer')<{activeTheme: string}>`
+const StyledFooter = styled('footer') <{ activeTheme: string }>`
   padding: 2rem 0;
   background-image: url('wave_vector_400.png');
-  background-color: ${({theme}) => theme.palette.secondary.main};
+  background-color: ${({ theme }) => theme.palette.secondary.main};
 
 
   & .container-logo {
@@ -16,8 +16,8 @@ const StyledFooter = styled('footer')<{activeTheme: string}>`
   }
 
   & .logo {
-    background-image: ${({activeTheme}) => activeTheme === 'light' ?
-                      "url('cherry-blossom.png')" : "url('rock.png')"} ;
+    background-image: ${({ activeTheme }) => activeTheme === 'light' ?
+    "url('cherry-blossom.png')" : "url('rock.png')"} ;
     background-position: center;
     background-size: contain;
     width: 20px;
@@ -25,13 +25,13 @@ const StyledFooter = styled('footer')<{activeTheme: string}>`
   }
 `;
 
-const Footer: FC<ThemeProps> = ({activeTheme}) => {
+const Footer: FC<ThemeProps> = ({ activeTheme }) => {
   return (
     <StyledFooter activeTheme={activeTheme}>
       <div className="container-logo">
-        <Typography>Made with </Typography>
-        <div className="logo"/>
-        <Typography>by the lovely bride</Typography>
+        <div className="logo" />
+        <Typography>Made with love</Typography>
+        <div className="logo" />
       </div>
     </StyledFooter>
   )

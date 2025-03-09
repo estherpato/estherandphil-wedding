@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, InputLabel, Radio, RadioGroup, styled, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const StyledForm = styled('form')`
   display: flex;
@@ -10,7 +11,7 @@ const StyledForm = styled('form')`
 const StyledAttendanceFormControl = styled(FormControl)`
   align-items: center;
   padding: 1rem 0;
-  border: ${({theme}) => `2px solid ${theme.palette.primary.main}`};
+  border: ${({ theme }) => `2px solid ${theme.palette.primary.main}`};
 `
 
 type Form = {
@@ -26,6 +27,8 @@ type Form = {
 }
 
 const AttendanceForm = () => {
+  const { t } = useTranslation();
+
   const postUrl = "https://script.google.com/macros/s/AKfycbyl37Xag-xWxx4r3cnp5RkXh6hUg_gEwz16w2rvBFMw-PNVZvVmDgSDSGd37Nucgw3x/exec";
   const initialFormState: Form = {
     name: "",
@@ -58,64 +61,69 @@ const AttendanceForm = () => {
       });
       setLoading(false);
       setFormData(initialFormState);
-      setDialog({ title: "Thank you!", open: true, message: response.ok ? "Form submitted successfully!" : "Error submitting form. Please try again." });
+      setDialog({ title: t('MODAL.TITLE_OK'), open: true, message: response.ok ? t('MODAL.SUBMISSION_OK') : t('MODAL.SUBMISSION_KO') });
     } catch (error) {
+      console.error(error);
       setLoading(false);
-      setDialog({ title: "Oops!", open: true, message: "An unexpected error occurred. Try again later" });
+      setDialog({ title: t('MODAL.TITLE_ERROR'), open: true, message: t('MODAL.ERROR_MESSAGE') });
     }
   };
 
   return (
     <StyledForm autoComplete="off" onSubmit={handleSubmit}>
       <FormControl fullWidth required>
-        <InputLabel htmlFor="name">Name + Surname(s)</InputLabel>
+        <InputLabel htmlFor="name">{t('FORM.NAME_LABEL')}</InputLabel>
         <Input id="name" name="name" value={formData.name} onChange={handleChange} />
       </FormControl>
 
       <StyledAttendanceFormControl fullWidth required>
         <FormLabel id="attendance">Are you coming?</FormLabel>
         <RadioGroup name="attendance" value={formData.attendance} onChange={handleChange} row>
-          <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-          <FormControlLabel value="no" control={<Radio />} label="No" />
+          <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
+          <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
         </RadioGroup>
       </StyledAttendanceFormControl>
 
       {formData.attendance === "yes" && (
         <>
-          <Typography sx={{textAlign: 'center', mt: 1, mb: 1}}>We are almost ready! Just a few more questions to make sure everything will be perfect.</Typography>
+          <Typography sx={{ textAlign: 'center', mt: 1, mb: 1 }}>
+            {t('FORM.EXTRA_QUESTIONS')}
+          </Typography>
           <FormControl fullWidth required>
-            <FormLabel id="partner">Are you bringing a +1 along?</FormLabel>
+            <FormLabel id="partner">{t('FORM.PLUS_ONE')}</FormLabel>
             <RadioGroup name="partner" value={formData.partner} onChange={handleChange} row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-              <FormControlLabel value="no" control={<Radio />} label="No" />
-              <FormControlLabel value="maybe" control={<Radio />} label="I'm not sure" />
+              <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
+              <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
+              <FormControlLabel value="maybe" control={<Radio />} label={t('FORM.UNSURE')} />
             </RadioGroup>
           </FormControl>
           {formData.partner === "yes" && (
             <FormControl fullWidth required>
-              <InputLabel htmlFor="partnerName">Full name of your partner</InputLabel>
+              <InputLabel htmlFor="partnerName">{t('FORM.PARTNER_NAME_LABEL')}</InputLabel>
               <Input id="partnerName" name="partnerName" value={formData.partnerName} onChange={handleChange} />
             </FormControl>
           )}
           {formData.partner === "maybe" &&
-            <Typography variant="body2" fontSize={20}>Remember to let us know well in advance if you will be bringing a partner to the wedding.</Typography>}
+            <Typography variant="body2" fontSize={20}>
+              {t('FORM.PARTNER_NOTE')}
+            </Typography>}
 
           <FormControl fullWidth required>
-            <FormLabel id="hotelRoom">Do you need a hotel room?</FormLabel>
+            <FormLabel id="hotelRoom">{t('FORM.HOTEL')}</FormLabel>
             <RadioGroup name="hotelRoom" value={formData.hotelRoom} onChange={handleChange} row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-              <FormControlLabel value="no" control={<Radio />} label="No" />
-              <FormControlLabel value="maybe" control={<Radio />} label="I'm not sure" />
+              <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
+              <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
+              <FormControlLabel value="maybe" control={<Radio />} label={t('FORM.UNSURE')} />
             </RadioGroup>
           </FormControl>
           {formData.hotelRoom === "yes" && (
             <>
               <FormControl fullWidth required>
-                <FormLabel htmlFor="fromDate">From when?</FormLabel>
+                <FormLabel htmlFor="fromDate">{t('FORM.DATE_FROM')}</FormLabel>
                 <Input id="fromDate" name="fromDate" type="date" value={formData.fromDate} onChange={handleChange} />
               </FormControl>
               <FormControl fullWidth required>
-                <FormLabel htmlFor="toDate">Until when?</FormLabel>
+                <FormLabel htmlFor="toDate">{t('FORM.DATE_TO')}</FormLabel>
                 <Input id="toDate" name="toDate" type="date" value={formData.toDate} onChange={handleChange} />
               </FormControl>
             </>
@@ -123,12 +131,12 @@ const AttendanceForm = () => {
           {
             formData.hotelRoom === "maybe" &&
             <Typography variant="body2" fontSize={20}>
-              Please remember to let us know in advance if you need to book a room at the hotel. We cannot guarantee availability if we are notified too late.
+              {t('FORM.HOTEL_NOTE')}
             </Typography>
           }
 
           <FormControl fullWidth required>
-            <FormLabel id="food">Do you have any allergies, intolerances or special diets?</FormLabel>
+            <FormLabel id="food">{t('FORM.FOOD')}</FormLabel>
             <RadioGroup name="food" value={formData.food} onChange={handleChange} row>
               <FormControlLabel value="yes" control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio />} label="No" />
@@ -136,7 +144,7 @@ const AttendanceForm = () => {
           </FormControl>
           {formData.food === "yes" && (
             <FormControl fullWidth>
-              <InputLabel htmlFor="foodRestriction">Let us know</InputLabel>
+              <InputLabel htmlFor="foodRestriction">{t('FORM.FOOD_RESTRICTION')}</InputLabel>
               <Input id="foodRestriction" name="foodRestriction" value={formData.foodRestriction} onChange={handleChange} />
             </FormControl>
           )}
@@ -152,7 +160,13 @@ const AttendanceForm = () => {
           <Typography>{dialog.message}</Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialog({ title: "", open: false, message: "" })} autoFocus>OK</Button>
+          <Button
+            onClick={() => setDialog({ title: "", open: false, message: "" })}
+            autoFocus
+            variant="contained"
+          >
+            OK
+          </Button>
         </DialogActions>
       </Dialog>
     </StyledForm>

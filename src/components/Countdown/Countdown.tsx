@@ -70,40 +70,44 @@ const Countdown: FC<CounterProps> = ({ deadline }) => {
   }, [deadline]);
 
   return (
-    <CounterContainer>
-      <StyledCountNumber>
-        <div>
-          <Typography>{leading0(days)}</Typography>
-        </div>
-        <Typography className="label">
-          {parseInt(leading0(days)) > 1 ? `${t('COUNTDOWN.DAYS')}` : `${t('COUNTDOWN.DAY')}`}
-        </Typography>
-      </StyledCountNumber>
-      <StyledCountNumber>
-        <div>
-          <Typography>{leading0(hours)}</Typography>
-        </div>
-        <Typography className="label">
-          {parseInt(leading0(hours)) > 1 ? `${t('COUNTDOWN.HOURS')}` : `${t('COUNTDOWN.HOUR')}`}
-        </Typography>
-      </StyledCountNumber>
-      <StyledCountNumber>
-        <div>
-          <Typography>{leading0(minutes)}</Typography>
-        </div>
-        <Typography className="label">
-          {parseInt(leading0(minutes)) > 1 ? `${t('COUNTDOWN.MINS')}` : `${t('COUNTDOWN.MIN')}`}
-        </Typography>
-      </StyledCountNumber>
-      <StyledCountNumber>
-        <div>
-          <Typography>{leading0(seconds)}</Typography>
-        </div>
-        <Typography className="label">
-          {parseInt(leading0(seconds)) > 1 ? `${t('COUNTDOWN.SECS')}` : `${t('COUNTDOWN.SEC')}`}
-        </Typography>
-      </StyledCountNumber>
-    </CounterContainer>
+    <>
+      <CounterContainer>
+        <StyledCountNumber>
+          <div>
+            <Typography>{leading0(days)}</Typography>
+          </div>
+          <Typography className="label">
+            {parseInt(leading0(days)) > 1 ? `${t('COUNTDOWN.DAYS')}` : `${t('COUNTDOWN.DAY')}`}
+          </Typography>
+        </StyledCountNumber>
+        <StyledCountNumber>
+          <div>
+            <Typography>{leading0(hours)}</Typography>
+          </div>
+          <Typography className="label">
+            {parseInt(leading0(hours)) > 1 ? `${t('COUNTDOWN.HOURS')}` : `${t('COUNTDOWN.HOUR')}`}
+          </Typography>
+        </StyledCountNumber>
+        <StyledCountNumber>
+          <div>
+            <Typography>{leading0(minutes)}</Typography>
+          </div>
+          <Typography className="label">
+            {parseInt(leading0(minutes)) > 1 ? `${t('COUNTDOWN.MINS')}` : `${t('COUNTDOWN.MIN')}`}
+          </Typography>
+        </StyledCountNumber>
+        <StyledCountNumber>
+          <div>
+            <Typography>{leading0(seconds)}</Typography>
+          </div>
+          <Typography className="label">
+            {parseInt(leading0(seconds)) > 1 ? `${t('COUNTDOWN.SECS')}` : `${t('COUNTDOWN.SEC')}`}
+          </Typography>
+        </StyledCountNumber>
+      </CounterContainer>
+      {/* <img src="wavy_divider.png" /> */}
+    </>
+
   );
 };
 

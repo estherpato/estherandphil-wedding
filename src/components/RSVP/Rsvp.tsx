@@ -24,14 +24,14 @@ const Rsvp = () => {
           component="p"
           variant="body1"
         >
-          We would love to see you there!
+          {t('RSVP.P1')}
         </Typography>
         <Typography
           sx={{lineHeight: 1.5, textAlign: 'center', mt: 1}}
           component="p"
           variant="body1"
         >
-          Please register using the form below by simply adding your name and confirmation.
+          {t('RSVP.P2')}
         </Typography>
       </div>
       <AttendanceForm />
