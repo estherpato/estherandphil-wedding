@@ -73,6 +73,7 @@ i18n
             HOTEL_NOTE: 'Please remember to let us know in advance if you need to book a room at the hotel. We cannot guarantee availability if we are notified too late.',
             FOOD: 'Do you have any allergies, intolerances or special diets?',
             FOOD_RESTRICTION: 'Let us know',
+            COMMENTS: 'Do you want to tell us something else?'
           },
           MODAL: {
             TITLE_OK: 'Thank you!',
@@ -112,7 +113,7 @@ i18n
             LOCATION_BUTTON: 'Ver ubicación'
           },
           OUR_STORY: {
-            P1: "Aunque nos conocimos oficialmente en 2016, no fue hasta 2020 cuando nuestros caminos volvieron a cruzarse.",
+            P1: "Aunque nos conocimos oficialmente en 2017, no fue hasta 2020 cuando nuestros caminos volvieron a cruzarse.",
             P2: "Los primeros pasos no fueron fáciles, y pasamos mucho tiempo viajando entre Madrid, El Tiemblo y Berlín. Hasta que en 2023 decidimos mudarnos definitivamente a España.",
             P3: "En octubre de 2024, partimos hacia Japón con las maletas vacías y el corazón rebosante de deseos. Volvimos con las maletas llenas, dos corazones felices y un anillo en el dedo de Esther.",
             P4: "Quienes nos conocen saben que nuestra afición por el anime, el manga y los videojuegos nos unió, pero es nuestro amor mutuo lo que nos hace seguir adelante.",
@@ -134,7 +135,7 @@ i18n
             CONFIRMATION: '¿Vas a venir?',
             POSITIVE: 'Sí',
             NEGATIVE: 'No',
-            UNSURE: "No estoy seguro",
+            UNSURE: "No estoy segur@",
             EXTRA_QUESTIONS: '¡Ya casi estamos! Solo algunas preguntas más para asegurarnos de que todo saldrá perfecto.',
             PLUS_ONE: '¿Vas a traer un +1?',
             PARTNER_NAME_LABEL: 'Nombre completo de tu +1',
@@ -145,6 +146,7 @@ i18n
             HOTEL_NOTE: 'No olvides avisarnos con antelación si necesitas reservar una habitación en el hotel. No podemos garantizar la disponibilidad si se nos avisa demasiado tarde.',
             FOOD: '¿Tienes alergias, intolerancias o dietas especiales?',
             FOOD_RESTRICTION: 'Cuéntanos más',
+            COMMENTS: '¿Quieres contarnos algo más?'
           },
           MODAL: {
             TITLE_OK: '¡Gracias!',
@@ -184,7 +186,7 @@ i18n
             LOCATION_BUTTON: 'See location'
           },
           OUR_STORY: {
-            P1: "Although we officially met in 2016, it wasn't until 2020 that our paths crossed again.",
+            P1: "Although we officially met in 2017, it wasn't until 2020 that our paths crossed again.",
             P2: "The first steps were not easy and we spent them travelling between Madrid, El Tiemblo and Berlin. Until 2023 when we decided to move to Spain for good.",
             P3: "In October 2024, we left for Japan with empty suitcases and our hearts brimming with wishes. We returned with full suitcases, two happy hearts and a ring on Esther's finger.",
             P4: "Those who know us will know that our love for watching anime, reading manga and playing video games brought us together; but it is our love for each other that keeps us going.",
@@ -216,6 +218,7 @@ i18n
             HOTEL_NOTE: 'Please remember to let us know in advance if you need to book a room at the hotel. We cannot guarantee availability if we are notified too late.',
             FOOD: 'Do you have any allergies, intolerances or special diets?',
             FOOD_RESTRICTION: 'Let us know',
+            COMMENTS: 'Do you want to tell us something else?'
           },
           MODAL: {
             TITLE_OK: 'Thank you!',

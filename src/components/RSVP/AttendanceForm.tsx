@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, InputLabel, Radio, RadioGroup, styled, Typography } from "@mui/material";
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, styled, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 const StyledForm = styled('form')`
@@ -15,7 +15,7 @@ const StyledAttendanceFormControl = styled(FormControl)`
 `
 
 type Form = {
-  name: string;
+  fullName: string;
   attendance: string;
   partner: string;
   partnerName: string;
@@ -24,6 +24,7 @@ type Form = {
   toDate: string;
   food: string;
   foodRestriction: string;
+  comments: string;
 }
 
 const AttendanceForm = () => {
@@ -31,15 +32,16 @@ const AttendanceForm = () => {
 
   const postUrl = "https://script.google.com/macros/s/AKfycbyl37Xag-xWxx4r3cnp5RkXh6hUg_gEwz16w2rvBFMw-PNVZvVmDgSDSGd37Nucgw3x/exec";
   const initialFormState: Form = {
-    name: "",
-    attendance: "yes",
+    fullName: "",
+    attendance: "",
     partner: "no",
     partnerName: "",
     hotelRoom: "no",
     fromDate: "",
     toDate: "",
     food: "no",
-    foodRestriction: ""
+    foodRestriction: "",
+    comments: "",
   };
   const [formData, setFormData] = useState<Form>(initialFormState);
   const [loading, setLoading] = useState(false);
@@ -51,7 +53,7 @@ const AttendanceForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    /* if (!validateForm()) return; */
+    if (formData.attendance === '') return;
     setLoading(true);
     try {
       const response = await fetch(postUrl, {
@@ -71,13 +73,17 @@ const AttendanceForm = () => {
 
   return (
     <StyledForm autoComplete="off" onSubmit={handleSubmit}>
-      <FormControl fullWidth required>
-        <InputLabel htmlFor="name">{t('FORM.NAME_LABEL')}</InputLabel>
-        <Input id="name" name="name" value={formData.name} onChange={handleChange} />
-      </FormControl>
+      <TextField
+        required
+        id="fullName"
+        name="fullName"
+        label={t('FORM.NAME_LABEL')}
+        variant="outlined"
+        onChange={handleChange}
+      />
 
       <StyledAttendanceFormControl fullWidth required>
-        <FormLabel id="attendance">Are you coming?</FormLabel>
+        <FormLabel id="attendance">{t('FORM.CONFIRMATION')}</FormLabel>
         <RadioGroup name="attendance" value={formData.attendance} onChange={handleChange} row>
           <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
           <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
@@ -98,10 +104,14 @@ const AttendanceForm = () => {
             </RadioGroup>
           </FormControl>
           {formData.partner === "yes" && (
-            <FormControl fullWidth required>
-              <InputLabel htmlFor="partnerName">{t('FORM.PARTNER_NAME_LABEL')}</InputLabel>
-              <Input id="partnerName" name="partnerName" value={formData.partnerName} onChange={handleChange} />
-            </FormControl>
+            <TextField
+              required
+              id="partnerName"
+              name="partnerName"
+              label={t('FORM.PARTNER_NAME_LABEL')}
+              variant="outlined"
+              onChange={handleChange}
+            />
           )}
           {formData.partner === "maybe" &&
             <Typography variant="body2" fontSize={20}>
@@ -138,23 +148,35 @@ const AttendanceForm = () => {
           <FormControl fullWidth required>
             <FormLabel id="food">{t('FORM.FOOD')}</FormLabel>
             <RadioGroup name="food" value={formData.food} onChange={handleChange} row>
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-              <FormControlLabel value="no" control={<Radio />} label="No" />
+              <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
+              <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
             </RadioGroup>
           </FormControl>
           {formData.food === "yes" && (
-            <FormControl fullWidth>
-              <InputLabel htmlFor="foodRestriction">{t('FORM.FOOD_RESTRICTION')}</InputLabel>
-              <Input id="foodRestriction" name="foodRestriction" value={formData.foodRestriction} onChange={handleChange} />
-            </FormControl>
+            <TextField
+              required
+              id="foodRestriction"
+              name="foodRestriction"
+              label={t('FORM.FOOD_RESTRICTION')}
+              variant="outlined"
+              onChange={handleChange}
+            />
           )}
+          <Typography>{t('FORM.COMMENTS')}</Typography>
+          <TextField
+            id="comments"
+            name="comments"
+            multiline
+            maxRows={4}
+            onChange={handleChange}
+          />
         </>
       )}
 
       <Button variant="contained" fullWidth sx={{ mt: 2 }} type="submit" disabled={loading}>
         {loading ? <CircularProgress size={24} /> : "Send"}
       </Button>
-      <Dialog open={dialog.open} onClose={() => setDialog({ title: "", open: false, message: "" })}>
+      <Dialog open={dialog.open} disableEscapeKeyDown>
         <DialogTitle>{dialog.title}</DialogTitle>
         <DialogContent>
           <Typography>{dialog.message}</Typography>

@@ -1,14 +1,3 @@
-TODO
-
-[] Footer
-[] Link the menu
-[] Sticky menu
-[x] Make switch smaller
-[] Add a different background color depending on the version
-[] Change font sizes depending on the fonts light/dark
-[] Fix form inputs on dark mode
-[] Add field for extra comments
-
 # Credits
 
 ## Icons
