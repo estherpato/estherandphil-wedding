@@ -125,7 +125,7 @@ const Header: FC<HeaderProps> = ({ activeTheme, switchChecked, setSwitchChecked 
           >
             <MenuItem value={LanguageType.ENGLISH}>🇬🇧 English</MenuItem>
             <MenuItem value={LanguageType.SPANISH}>🇪🇸 Español</MenuItem>
-            <MenuItem value={LanguageType.GERMAN}>🇩🇪 Deutch</MenuItem>
+            <MenuItem value={LanguageType.GERMAN}>🇩🇪 Deutsch</MenuItem>
           </Select>
         </FormControl>
         <StyledSwitchWrapper>

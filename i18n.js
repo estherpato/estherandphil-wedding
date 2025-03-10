@@ -40,14 +40,14 @@ i18n
             LOCATION_BUTTON: 'See location'
           },
           OUR_STORY: {
-            P1: "Although we officially met in 2017, it wasn't until 2020 that our paths crossed again.",
+            P1: "Although we talked for the first time in 2017, it wasn't until 2020 that our paths crossed again.",
             P2: "The first steps were not easy and we spent them travelling between Madrid, El Tiemblo and Berlin. Until 2023 when we decided to move to Spain for good.",
             P3: "In October 2024, we left for Japan with empty suitcases and our hearts brimming with wishes. We returned with full suitcases, two happy hearts and a ring on Esther's finger.",
             P4: "Those who know us will know that our love for watching anime, reading manga and playing video games brought us together; but it is our love for each other that keeps us going.",
             P5: "On the 6th of June, we will take another step forward and officially unite our hearts, and we are very happy that you will be a part of it."
           },
           SCHEDULE: {
-            ROW1: 'Civil ceremony in the hotel garden',
+            ROW1: 'Wedding ceremony in the hotel garden',
             ROW2: 'Cocktail reception in the hotel garden',
             ROW3: 'Dinner in "El Patio" lounge',
             ROW4: 'Party and dancing until the body can take it',
@@ -113,7 +113,7 @@ i18n
             LOCATION_BUTTON: 'Ver ubicación'
           },
           OUR_STORY: {
-            P1: "Aunque nos conocimos oficialmente en 2017, no fue hasta 2020 cuando nuestros caminos volvieron a cruzarse.",
+            P1: "Aunque la primera vez que hablamos fue en 2017, no fue hasta 2020 cuando nuestros caminos volvieron a cruzarse.",
             P2: "Los primeros pasos no fueron fáciles, y pasamos mucho tiempo viajando entre Madrid, El Tiemblo y Berlín. Hasta que en 2023 decidimos mudarnos definitivamente a España.",
             P3: "En octubre de 2024, partimos hacia Japón con las maletas vacías y el corazón rebosante de deseos. Volvimos con las maletas llenas, dos corazones felices y un anillo en el dedo de Esther.",
             P4: "Quienes nos conocen saben que nuestra afición por el anime, el manga y los videojuegos nos unió, pero es nuestro amor mutuo lo que nos hace seguir adelante.",
@@ -160,72 +160,73 @@ i18n
       de: {
         translation: {
           TITLES: {
-            HOME: 'Home',
-            SAVE_THE_DATE: 'Speichern Sie das Datum!',
+            HOME: 'Startseite',
+            SAVE_THE_DATE: 'Save the date!',
             OUR_STORY: 'Unsere Geschichte',
-            THE_EVENT: 'Die Veranstaltung',
-            CEREMONY_AND_RECEPTION: 'Zeremonie & Empfangn',
-            RSVP: 'RSVP'
+            THE_EVENT: 'Das Event',
+            CEREMONY_AND_RECEPTION: 'Zeremonie & Empfang',
+            RSVP: 'Bestätigung der Teilnahme'
           },
           COUNTDOWN: {
             DAYS: 'Tage',
             DAY: 'Tag',
             HOURS: 'Stunden',
             HOUR: 'Stunde',
-            MINS: '??',
-            MIN: '??',
-            SECS: '??',
-            SEC: '??',
+            MINS: 'Min',
+            MIN: 'Min',
+            SECS: 'Sek',
+            SEC: 'Sek',
           },
           SAVE_THE_DATE: {
-            SUBTITLE: 'Join us as we seal our love with an <strong>"I do"</strong> that will last a lifetime',
-            WHEN: 'When?',
-            DATE: '6th of June, 2026 · 18:00',
-            CALENDAR_BUTTON: 'Save on your calendar',
-            WHERE: 'Where?',
-            LOCATION_BUTTON: 'See location'
+            SUBTITLE: 'Begleite uns, wenn wir unsere Liebe mit einem <strong>"Ich will"</strong> für immer besiegeln',
+            WHEN: 'Wann?',
+            DATE: '6. Juni, 2026 - 18:00 Uhr',
+            CALENDAR_BUTTON: 'Im Kalender speichern',
+            WHERE: 'Wo?',
+            LOCATION_BUTTON: 'Standort'
           },
           OUR_STORY: {
-            P1: "Although we officially met in 2017, it wasn't until 2020 that our paths crossed again.",
-            P2: "The first steps were not easy and we spent them travelling between Madrid, El Tiemblo and Berlin. Until 2023 when we decided to move to Spain for good.",
-            P3: "In October 2024, we left for Japan with empty suitcases and our hearts brimming with wishes. We returned with full suitcases, two happy hearts and a ring on Esther's finger.",
-            P4: "Those who know us will know that our love for watching anime, reading manga and playing video games brought us together; but it is our love for each other that keeps us going.",
-            P5: "On the 6th of June, we will take another step forward and officially unite our hearts, and we are very happy that you will be a part of it."
+            P1: "Unsere ersten Worte wechselten wir 2017, doch unsere Wege führten uns erst 2020 erneut zusammen.",
+            P2: "Der Anfang war nicht leicht - unzählige Reisen zwischen Madrid, El Tiemblo und Berlin bestimmten unseren Alltag. Bis wir uns schließlich 2023 entschieden, unser gemeinsames Leben dauerhaft in Spanien aufzubauen.",
+            P3: "Im Oktober 2024 machten wir uns mit leeren Koffern und voller Träume auf den Weg nach Japan. Zurück kamen wir mit vielen Erinnerungen, vollen Koffern, zwei glücklichen Herzen – und einem Ring an Esthers Finger.",
+            P4: "Wer uns kennt, weiß, dass unsere gemeinsame Leidenschaft für Anime, Manga und Videospiele uns zusammengebracht hat. Aber es ist unsere Liebe zueinander, die uns verbindet und stärkt.",
+            P5: "Am 6. Juni wagen wir den nächsten Schritt und besiegeln unser Glück offiziell - und wir freuen uns riesig, dass du diesen besonderen Moment mit uns teilst."
           },
           SCHEDULE: {
-            ROW1: 'Civil ceremony in the hotel garden',
-            ROW2: 'Cocktail reception in the hotel garden',
-            ROW3: 'Dinner in "El Patio" lounge',
-            ROW4: 'Party and dancing until the body can take it'
+            ROW1: 'Trauung im Garten des Hotels',
+            ROW2: 'Cocktail-Empfang im Garten des Hotels',
+            ROW3: 'Abendessen im Salon "El Patio"',
+            ROW4: 'Feiern und Tanzen bis die Wolken wieder lila sind',
+            NOTE: '*Angaben ohne Gewähr.',
           },
           RSVP: {
-            P1: 'We would love to see you there!',
-            P2: 'Please register using the form below by simply adding your name and confirmation.'
+            P1: 'Wir würden uns freuen, dich dort zu sehen!',
+            P2: 'Bitte fülle das unten stehende Formular aus, um deine Teilnahme zu bestätigen.'
           },
           FORM: {
-            NAME_LABEL: 'Full name',
-            CONFIRMATION: 'Are you coming?',
-            POSITIVE: 'Yes',
-            NEGATIVE: 'No',
-            UNSURE: "I'm not sure",
-            EXTRA_QUESTIONS: 'We are almost ready! Just a few more questions to make sure everything will be perfect.',
-            PLUS_ONE: 'Are you bringing a +1 along?',
-            PARTNER_NAME_LABEL: 'Full name of your partner',
-            PARTNER_NOTE: 'Remember to let us know well in advance if you will be bringing a partner to the wedding.',
-            HOTEL: 'Do you need a hotel room?',
-            DATE_FROM: 'From when?',
-            DATE_TO: 'Until when?',
-            HOTEL_NOTE: 'Please remember to let us know in advance if you need to book a room at the hotel. We cannot guarantee availability if we are notified too late.',
-            FOOD: 'Do you have any allergies, intolerances or special diets?',
-            FOOD_RESTRICTION: 'Let us know',
-            COMMENTS: 'Do you want to tell us something else?'
+            NAME_LABEL: 'Vor- und Nachname',
+            CONFIRMATION: 'Wirst du kommen?',
+            POSITIVE: 'Ja',
+            NEGATIVE: 'Nein',
+            UNSURE: "Vielleicht",
+            EXTRA_QUESTIONS: 'Wir sind fast fertig! Nur noch ein paar Fragen, um sicherzustellen, dass alles perfekt ist.',
+            PLUS_ONE: 'Kommst du in Begleitung?',
+            PARTNER_NAME_LABEL: 'Vor- und Nachname deiner Begleitung',
+            PARTNER_NOTE: 'Vergiss nicht, uns im Voraus mitzuteilen, ob du eine Begleitung zur Hochzeit mitbringst.',
+            HOTEL: 'Brauchst du ein Hotelzimmer?',
+            DATE_FROM: 'Von wann?',
+            DATE_TO: 'Bis wann?',
+            HOTEL_NOTE: 'Bitte denk daran, uns im Voraus Bescheid zu geben, wenn du ein Zimmer im Hotel buchen musst. Wir können die Verfügbarkeit nicht garantieren, wenn wir zu spät benachrichtigt werden.',
+            FOOD: 'Hast du irgendwelche Allergien, Unverträglichkeiten oder spezielle Diäten?',
+            FOOD_RESTRICTION: 'Welche?',
+            COMMENTS: 'Möchtest du uns noch etwas mitteilen?'
           },
           MODAL: {
-            TITLE_OK: 'Thank you!',
-            SUBMISSION_OK: 'Form submitted successfully!',
-            SUBMISSION_KO: 'Error submitting form. Please try again.',
+            TITLE_OK: 'Dankeschön!',
+            SUBMISSION_OK: 'Formular erfolgreich ausgefüllt!',
+            SUBMISSION_KO: 'Fehlgeschlagen. Bitte erneut versuchen.',
             TITLE_ERROR: 'Oops!',
-            ERROR_MESSAGE: 'An unexpected error occurred. Try again later.'
+            ERROR_MESSAGE: 'Ein unerwarteter Fehler ist aufgetreten. Versuche es später noch einmal.'
           }
         }
       },
