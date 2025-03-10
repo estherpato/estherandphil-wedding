@@ -1,5 +1,5 @@
 import { FormControl, MenuItem, Select, SelectChangeEvent, styled, Switch, Typography } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { LanguageType } from '../../enums/LanguageType.enum';
 import { useLanguage } from '../../hooks/useLanguage';
 
@@ -106,13 +106,11 @@ type HeaderProps = {
 }
 
 const Header: FC<HeaderProps> = ({ activeTheme, switchChecked, setSwitchChecked }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState<LanguageType>(LanguageType.ENGLISH);
-  const { handleLanguageChange } = useLanguage();
+  const { language, handleLanguageChange } = useLanguage();
 
   const handleChange = (event: SelectChangeEvent) => {
     const newLang = event.target.value as LanguageType;
     handleLanguageChange(newLang);
-    setSelectedLanguage(newLang);
   }
 
   return (
@@ -121,7 +119,7 @@ const Header: FC<HeaderProps> = ({ activeTheme, switchChecked, setSwitchChecked 
         <FormControl fullWidth>
           <Select
             id="language-select"
-            value={selectedLanguage}
+            value={language}
             onChange={handleChange}
             aria-label="language selection"
           >
