@@ -15,7 +15,7 @@ const StyledSaveTheDate = styled('section') <{ activeTheme: string }>`
 
   & .subtitle {
     text-align: center;
-    font-size: 2rem;
+    font-size: ${({activeTheme}) => activeTheme === 'light' ? '1.85rem' : '2rem'};
     margin-top: 1.5rem;
   }
 

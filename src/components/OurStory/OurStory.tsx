@@ -2,8 +2,9 @@ import { styled, Typography } from "@mui/material";
 import { FC } from "react";
 import { SectionTitle } from "../common/SectionTitle";
 import { useTranslation } from "react-i18next";
+import { ThemeProps } from "../../App";
 
-const StyledOurStory = styled('section')`
+const StyledOurStory = styled('section')<{activeTheme: string}>`
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
@@ -12,16 +13,16 @@ const StyledOurStory = styled('section')`
   & .description {
     line-height: 1.5;
     text-align: center;
-    font-family: 1rem;
+    font-size: ${({activeTheme}) => activeTheme === 'light' ? '1rem' : '1.125rem'};
   }
 `
 
-const OurStory: FC = () => {
+const OurStory: FC<ThemeProps> = ({activeTheme}) => {
   const { t } = useTranslation();
 
   return (
-    <StyledOurStory>
-      <SectionTitle component="h2" variant="h2" sx={{mb: 1}}>{t('TITLES.OUR_STORY')}</SectionTitle>
+    <StyledOurStory activeTheme={activeTheme}>
+      <SectionTitle component="h2" variant="h2" sx={{ mb: 1 }}>{t('TITLES.OUR_STORY')}</SectionTitle>
 
       <Typography className="description">
         {t('OUR_STORY.P1')}

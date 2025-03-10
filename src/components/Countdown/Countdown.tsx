@@ -3,7 +3,7 @@ import { FC, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const CounterContainer = styled('section')`
-  margin-top: 2rem;
+  padding-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;

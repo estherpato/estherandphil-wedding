@@ -19,7 +19,7 @@ i18n
             OUR_STORY: 'Our Story',
             THE_EVENT: 'The event',
             CEREMONY_AND_RECEPTION: 'Ceremony & Reception',
-            RSVP: 'RSPV'
+            RSVP: 'R.S.V.P.'
           },
           COUNTDOWN: {
             DAYS: 'days',
@@ -40,7 +40,7 @@ i18n
             LOCATION_BUTTON: 'See location'
           },
           OUR_STORY: {
-            P1: "Although we officially met in 2016, it wasn't until 2020 that our paths crossed again.",
+            P1: "Although we officially met in 2017, it wasn't until 2020 that our paths crossed again.",
             P2: "The first steps were not easy and we spent them travelling between Madrid, El Tiemblo and Berlin. Until 2023 when we decided to move to Spain for good.",
             P3: "In October 2024, we left for Japan with empty suitcases and our hearts brimming with wishes. We returned with full suitcases, two happy hearts and a ring on Esther's finger.",
             P4: "Those who know us will know that our love for watching anime, reading manga and playing video games brought us together; but it is our love for each other that keeps us going.",

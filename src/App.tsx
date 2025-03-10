@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react'
 import { ThemeProvider } from '@emotion/react'
-import Burger from './components/BurgerMenu/Burger'
-import BurgerMenu from './components/BurgerMenu/BurgerMenu'
 import Header from './components/Header/Header'
 import Main from './components/Main/Main'
 import { useActiveTheme } from './hooks/useActiveTheme'
@@ -9,30 +6,26 @@ import { getTheme } from './theme/theme'
 import Footer from './components/Footer/Footer'
 import LanguageProvider from './context/LanguageContext'
 import '../i18n.js';
-
+import { useEffect } from 'react'
 
 export type ThemeProps = {
   activeTheme: 'light' | 'dark';
 }
 
 function App() {
-
-  const [open, setOpen] = useState<boolean>(false);
   const { mode, switchChecked, setSwitchChecked } = useActiveTheme();
 
   useEffect(() => {
-    const body = document.querySelector('body');
-    if (body) body.style.overflowY = open ? 'hidden' : 'scroll';
-  }, [open])
+    const rootEl = document.querySelector('#root');
+    if (rootEl instanceof HTMLElement) {
+      rootEl.style.background = getTheme(mode).palette.background.default;
+    }
+  }, [mode]);
 
   return (
     <ThemeProvider theme={getTheme(mode)}>
       <LanguageProvider>
         <Header activeTheme={mode} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
-        <section>
-          <Burger open={open} setOpen={setOpen} />
-          <BurgerMenu open={open} />
-        </section>
         <Main activeTheme={mode} />
         <Footer activeTheme={mode} />
       </LanguageProvider>

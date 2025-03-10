@@ -5,7 +5,7 @@ const StyledBackground = styled('div')`
 `;
 
 export const StyledBackgroundPrimary = styled(StyledBackground)`
-  background: linear-gradient(0deg, rgba(255,179,200,1) 0%, rgba(255,255,255,1) 100%);
+  background: ${({theme}) => `linear-gradient(0deg, ${theme.palette.secondary.main} 0%, ${theme.palette.background.default} 100%)`};
 `;
 
 

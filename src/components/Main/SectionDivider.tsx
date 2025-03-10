@@ -1,5 +1,5 @@
 import { styled } from "@mui/material"
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 const StyledDivider = styled('img')`
   width: 100%;
@@ -8,11 +8,23 @@ const StyledDivider = styled('img')`
 
 type SectionDividerProps = {
   type: 'primary' | 'secondary';
+  activeTheme: 'light' | 'dark';
 }
 
-const SectionDivider: FC<SectionDividerProps> = ({ type }) => {
-  const srcUrl = type === 'primary' ? '' : 'light_sec_divider.png';
-  return <StyledDivider src={srcUrl} width={'100%'} />
+const SectionDivider: FC<SectionDividerProps> = ({ type, activeTheme }) => {
+  const [url, setUrl] = useState<string>('');
+
+  useEffect(() => {
+    if (type === 'primary') {
+      const primaryUrl = activeTheme === 'light' ? '' : '';
+      setUrl(primaryUrl);
+    } else if (type === 'secondary') {
+      const secondaryUrl = activeTheme === 'light' ? 'light_sec_divider.png' : 'dark_sec_divider.png';
+      setUrl(secondaryUrl);
+    }
+  }, [type, activeTheme])
+
+  return <StyledDivider src={url} width={'100%'} />
 }
 
 export default SectionDivider;

@@ -17,7 +17,10 @@ export const getTheme = (mode: 'light' | 'dark') => createTheme({
     info: {
       main: '#6C6C6C',
       light: '#f6f7f8',
-    }
+    },
+    background: {
+      default: mode === 'light' ? '#FFFFFF' : '#8c8c8c',
+    },
   },
   typography: {
     h1: {
@@ -31,6 +34,7 @@ export const getTheme = (mode: 'light' | 'dark') => createTheme({
     },
     body2: {
       fontFamily: mode === 'light' ? 'Bad Script' : 'Caveat',
-    }
+    },
+    fontSize: mode === 'light' ? 14 : 16,
   },
 });

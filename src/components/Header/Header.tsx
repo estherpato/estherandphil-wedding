@@ -1,5 +1,7 @@
-import { styled, Switch, Typography } from '@mui/material';
-import { FC } from 'react';
+import { FormControl, MenuItem, Select, SelectChangeEvent, styled, Switch, Typography } from '@mui/material';
+import { FC, useState } from 'react';
+import { LanguageType } from '../../enums/LanguageType.enum';
+import { useLanguage } from '../../hooks/useLanguage';
 
 const StyledHeader = styled('header') <{ activeTheme: string }>`
   position: relative;
@@ -25,15 +27,24 @@ const StyledHeader = styled('header') <{ activeTheme: string }>`
   }
 `;
 
+const StyledActions = styled('div')`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem;
+  gap: 2rem;
+`;
+
 const StyledSwitchWrapper = styled('div')`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  position: absolute;
-  top: 4%;
-  right: 2rem;
   background-color: ${({ theme }) => theme.palette.primary.light};
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 1rem;
   border-radius: 50px;
 
   & img {
@@ -95,13 +106,36 @@ type HeaderProps = {
 }
 
 const Header: FC<HeaderProps> = ({ activeTheme, switchChecked, setSwitchChecked }) => {
+  const [selectedLanguage, setSelectedLanguage] = useState<LanguageType>(LanguageType.ENGLISH);
+  const { handleLanguageChange } = useLanguage();
+
+  const handleChange = (event: SelectChangeEvent) => {
+    const newLang = event.target.value as LanguageType;
+    handleLanguageChange(newLang);
+    setSelectedLanguage(newLang);
+  }
+
   return (
     <StyledHeader activeTheme={activeTheme}>
-      <StyledSwitchWrapper>
-        <img src="cherry-blossom.png" alt="Light Mode" />
-        <Switch color="secondary" checked={switchChecked} onChange={() => setSwitchChecked(!switchChecked)} />
-        <img src="rock.png" alt="Dark Mode" />
-      </StyledSwitchWrapper>
+      <StyledActions>
+        <FormControl fullWidth>
+          <Select
+            id="language-select"
+            value={selectedLanguage}
+            onChange={handleChange}
+            aria-label="language selection"
+          >
+            <MenuItem value={LanguageType.ENGLISH}>🇬🇧 English</MenuItem>
+            <MenuItem value={LanguageType.SPANISH}>🇪🇸 Español</MenuItem>
+            <MenuItem value={LanguageType.GERMAN}>🇩🇪 Deutch</MenuItem>
+          </Select>
+        </FormControl>
+        <StyledSwitchWrapper>
+          <img src="cherry-blossom.png" alt="Light Mode" />
+          <Switch color="secondary" checked={switchChecked} onChange={() => setSwitchChecked(!switchChecked)} />
+          <img src="rock.png" alt="Dark Mode" />
+        </StyledSwitchWrapper>
+      </StyledActions>
       <StyledDate activeTheme={activeTheme}>
         <Typography className="date">06 · 06 · 2026</Typography>
       </StyledDate>
