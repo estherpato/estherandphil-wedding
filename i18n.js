@@ -73,7 +73,8 @@ i18n
             HOTEL_NOTE: 'Please remember to let us know in advance if you need to book a room at the hotel. We cannot guarantee availability if we are notified too late.',
             FOOD: 'Do you have any allergies, intolerances or special diets?',
             FOOD_RESTRICTION: 'Let us know',
-            COMMENTS: 'Do you want to tell us something else?'
+            COMMENTS: 'Do you want to tell us something else?',
+            SEND_BUTTON: 'Send'
           },
           MODAL: {
             TITLE_OK: 'Thank you!',
@@ -81,6 +82,11 @@ i18n
             SUBMISSION_KO: 'Error submitting form. Please try again.',
             TITLE_ERROR: 'Oops!',
             ERROR_MESSAGE: 'An unexpected error occurred. Try again later.'
+          },
+          MODAL_INIT: {
+            TITLE: 'Hey!',
+            MESSAGE: 'To enjoy the full experience, you should turn your volume up!',
+            BUTTON: 'Done'
           }
         }
       },
@@ -146,7 +152,8 @@ i18n
             HOTEL_NOTE: 'No olvides avisarnos con antelación si necesitas reservar una habitación en el hotel. No podemos garantizar la disponibilidad si se nos avisa demasiado tarde.',
             FOOD: '¿Tienes alergias, intolerancias o dietas especiales?',
             FOOD_RESTRICTION: 'Cuéntanos más',
-            COMMENTS: '¿Quieres contarnos algo más?'
+            COMMENTS: '¿Quieres contarnos algo más?',
+            SEND_BUTTON: 'Enviar'
           },
           MODAL: {
             TITLE_OK: '¡Gracias!',
@@ -154,6 +161,11 @@ i18n
             SUBMISSION_KO: 'Ha ocurrido un error al enviar el formulario. Prueba de nuevo.',
             TITLE_ERROR: '¡Ups!',
             ERROR_MESSAGE: 'Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.'
+          },
+          MODAL_INIT: {
+            TITLE: '¡Hey!',
+            MESSAGE: 'Para disfrutar de la experiencia, ¡sube el volumen!',
+            BUTTON: 'Listo'
           }
         }
       },
@@ -219,7 +231,8 @@ i18n
             HOTEL_NOTE: 'Bitte denk daran, uns im Voraus Bescheid zu geben, wenn du ein Zimmer im Hotel buchen musst. Wir können die Verfügbarkeit nicht garantieren, wenn wir zu spät benachrichtigt werden.',
             FOOD: 'Hast du irgendwelche Allergien, Unverträglichkeiten oder spezielle Diäten?',
             FOOD_RESTRICTION: 'Welche?',
-            COMMENTS: 'Möchtest du uns noch etwas mitteilen?'
+            COMMENTS: 'Möchtest du uns noch etwas mitteilen?',
+            SEND_BUTTON: 'Absenden'
           },
           MODAL: {
             TITLE_OK: 'Dankeschön!',
@@ -227,6 +240,11 @@ i18n
             SUBMISSION_KO: 'Fehlgeschlagen. Bitte erneut versuchen.',
             TITLE_ERROR: 'Oops!',
             ERROR_MESSAGE: 'Ein unerwarteter Fehler ist aufgetreten. Versuche es später noch einmal.'
+          },
+          MODAL_INIT: {
+            TITLE: 'Hey!',
+            MESSAGE: 'Bevor du loslegst, dreh die Lautstärke hoch!',
+            BUTTON: 'Fertig'
           }
         }
       },

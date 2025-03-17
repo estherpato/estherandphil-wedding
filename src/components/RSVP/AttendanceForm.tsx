@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, styled, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -29,6 +29,7 @@ type Form = {
 
 const AttendanceForm = () => {
   const { t } = useTranslation();
+  const inputNameRef = useRef('');
 
   const postUrl = "https://script.google.com/macros/s/AKfycbyl37Xag-xWxx4r3cnp5RkXh6hUg_gEwz16w2rvBFMw-PNVZvVmDgSDSGd37Nucgw3x/exec";
   const initialFormState: Form = {
@@ -48,22 +49,33 @@ const AttendanceForm = () => {
   const [dialog, setDialog] = useState({ title: '', open: false, message: "" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const newFormData = {
+      ...formData,
+      [e.target.name]: e.target.value
+    }
+    setFormData(newFormData);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.attendance === '') return;
     setLoading(true);
+
     try {
       const response = await fetch(postUrl, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString()
       });
-      setLoading(false);
-      setFormData(initialFormState);
-      setDialog({ title: t('MODAL.TITLE_OK'), open: true, message: response.ok ? t('MODAL.SUBMISSION_OK') : t('MODAL.SUBMISSION_KO') });
+
+      if(response?.ok) {
+        setLoading(false);
+        setFormData(initialFormState);
+        setDialog({ title: t('MODAL.TITLE_OK'), open: true, message: t('MODAL.SUBMISSION_OK') })
+      } else {
+        setLoading(false);
+        setDialog({ title: t('MODAL.TITLE_ERROR'), open: true, message: t('MODAL.SUBMISSION_KO') });
+      }
     } catch (error) {
       console.error(error);
       setLoading(false);
@@ -71,8 +83,14 @@ const AttendanceForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (!formData.fullName && inputNameRef) {
+      inputNameRef.current = "";
+    }
+  }, [formData.fullName]);
+
   return (
-    <StyledForm autoComplete="off" onSubmit={handleSubmit}>
+    <StyledForm id="attendance-form" autoComplete="off" onSubmit={handleSubmit}>
       <TextField
         required
         id="fullName"
@@ -80,6 +98,7 @@ const AttendanceForm = () => {
         label={t('FORM.NAME_LABEL')}
         variant="outlined"
         onChange={handleChange}
+        inputRef={inputNameRef}
       />
 
       <StyledAttendanceFormControl fullWidth required>
@@ -174,7 +193,7 @@ const AttendanceForm = () => {
       )}
 
       <Button variant="contained" fullWidth sx={{ mt: 2 }} type="submit" disabled={loading}>
-        {loading ? <CircularProgress size={24} /> : "Send"}
+        {loading ? <CircularProgress size={24} /> : t('FORM.SEND_BUTTON')}
       </Button>
       <Dialog open={dialog.open} disableEscapeKeyDown>
         <DialogTitle>{dialog.title}</DialogTitle>
