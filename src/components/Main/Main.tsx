@@ -17,7 +17,7 @@ const Main: FC<ThemeProps> = ({ activeTheme }) => {
       <StyledBackgroundPrimary>
         <Countdown deadline={deadline} />
         <SaveTheDate activeTheme={activeTheme} />
-        <SectionDivider activeTheme={activeTheme} type="secondary" />
+        <SectionDivider activeTheme={activeTheme} />
       </StyledBackgroundPrimary>
 
       <StyledBoxPrimary>

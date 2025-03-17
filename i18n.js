@@ -87,6 +87,9 @@ i18n
             TITLE: 'Hey!',
             MESSAGE: 'To enjoy the full experience, you should turn your volume up!',
             BUTTON: 'Done'
+          },
+          FOOTER: {
+            MESSAGE: "Can’t wait to celebrate with you!"
           }
         }
       },
@@ -166,6 +169,9 @@ i18n
             TITLE: '¡Hey!',
             MESSAGE: 'Para disfrutar de la experiencia, ¡sube el volumen!',
             BUTTON: 'Listo'
+          },
+          FOOTER: {
+            MESSAGE: "¡Estamos deseando celebrarlo contigo!"
           }
         }
       },
@@ -245,6 +251,9 @@ i18n
             TITLE: 'Hey!',
             MESSAGE: 'Bevor du loslegst, dreh die Lautstärke hoch!',
             BUTTON: 'Fertig'
+          },
+          FOOTER: {
+            MESSAGE: "Wir können es kaum erwarten, mit dir zu feiern!"
           }
         }
       },

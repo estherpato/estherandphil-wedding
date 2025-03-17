@@ -7,22 +7,16 @@ const StyledDivider = styled('img')`
 `
 
 type SectionDividerProps = {
-  type: 'primary' | 'secondary';
   activeTheme: 'light' | 'dark';
 }
 
-const SectionDivider: FC<SectionDividerProps> = ({ type, activeTheme }) => {
+const SectionDivider: FC<SectionDividerProps> = ({ activeTheme }) => {
   const [url, setUrl] = useState<string>('');
 
   useEffect(() => {
-    if (type === 'primary') {
-      const primaryUrl = activeTheme === 'light' ? '' : '';
-      setUrl(primaryUrl);
-    } else if (type === 'secondary') {
-      const secondaryUrl = activeTheme === 'light' ? 'light_sec_divider.png' : 'dark_sec_divider.png';
-      setUrl(secondaryUrl);
-    }
-  }, [type, activeTheme])
+    const secondaryUrl = activeTheme === 'light' ? 'light_sec_divider.png' : 'dark_sec_divider.png';
+    setUrl(secondaryUrl);
+  }, [activeTheme])
 
   return <StyledDivider src={url} width={'100%'} />
 }

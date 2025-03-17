@@ -1,38 +1,35 @@
-import { styled, Typography } from "@mui/material";
+import { IconButton, styled, Typography } from "@mui/material";
 import { ThemeProps } from "../../App";
 import { FC } from "react";
+import { ArrowUpward } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 const StyledFooter = styled('footer') <{ activeTheme: string }>`
-  padding: 2rem 0;
-  background-image: url('wave_vector_400.png');
-  background-color: ${({ theme }) => theme.palette.secondary.main};
-
-
-  & .container-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: center;
-  }
-
-  & .logo {
-    background-image: ${({ activeTheme }) => activeTheme === 'light' ?
-    "url('cherry-blossom.png')" : "url('rock.png')"} ;
-    background-position: center;
-    background-size: contain;
-    width: 20px;
-    height: 20px;
-  }
+  padding: 1rem 2rem;
+  background-color: ${({ theme }) => theme.palette.secondary.dark};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
+const StyledIconButton = styled(IconButton)`
+  background-color: ${({ theme }) => theme.palette.primary.main};
+  padding: 1rem;
+`
+
 const Footer: FC<ThemeProps> = ({ activeTheme }) => {
+  const { t } = useTranslation();
+
+  const handleClick = () => {
+    globalThis.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }
+
   return (
     <StyledFooter activeTheme={activeTheme}>
-      <div className="container-logo">
-        <div className="logo" />
-        <Typography>Made with love</Typography>
-        <div className="logo" />
-      </div>
+      <Typography fontSize={14}><i>{t('FOOTER.MESSAGE')}</i> &#10084;</Typography>
+      <StyledIconButton onClick={handleClick} aria-label="Scroll up!">
+        <ArrowUpward aria-hidden="true" />
+      </StyledIconButton>
     </StyledFooter>
   )
 };
