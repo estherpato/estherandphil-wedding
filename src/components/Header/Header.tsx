@@ -44,7 +44,8 @@ const StyledSwitchWrapper = styled('div')`
   align-items: center;
   gap: 0.5rem;
   background-color: ${({ theme }) => theme.palette.primary.light};
-  padding: 0.25rem 1rem;
+  padding: 0 1rem;
+  height: 40px;
   border-radius: 50px;
 
   & img {
@@ -122,6 +123,7 @@ const Header: FC<HeaderProps> = ({ activeTheme, switchChecked, setSwitchChecked 
             value={language}
             onChange={handleChange}
             aria-label="language selection"
+            size="small"
           >
             <MenuItem value={LanguageType.ENGLISH}>🇬🇧 English</MenuItem>
             <MenuItem value={LanguageType.SPANISH}>🇪🇸 Español</MenuItem>
