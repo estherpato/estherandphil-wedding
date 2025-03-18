@@ -15,23 +15,24 @@ export type ThemeProps = {
 }
 
 function App() {
-  const { mode, switchChecked, setSwitchChecked } = useActiveTheme();
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [dialogOpen, setDialogOpen] = useState<boolean>(true);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const { mode, switchChecked, setSwitchChecked } = useActiveTheme();
   const { t } = useTranslation();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Function to play the correct audio
+  const handleOnClick = () => {
+    setHasInteracted(true);
+  }
+
   const playAudio = useCallback(() => {
     setDialogOpen(false);
 
-    // Stop and reset previous audio
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
 
-    // Create and play new audio
     audioRef.current = new Audio(mode === "light" ? "Geschlossene_Augen.mp3" : "kiss.mp3");
     audioRef.current.play().catch((error) => console.error("Playback error:", error));
 
@@ -43,7 +44,6 @@ function App() {
     }
   }, [mode]);
 
-  // Change background color when mode switches
   useEffect(() => {
     const rootEl = document.querySelector('#root');
     if (rootEl instanceof HTMLElement) {
@@ -51,23 +51,11 @@ function App() {
     }
   }, [mode]);
 
-  // Auto-play when mode changes (only after user interaction)
   useEffect(() => {
     if (hasInteracted) {
       playAudio();
     }
   }, [mode, hasInteracted]);
-
-  // Listen for first user interaction to enable autoplay
-  useEffect(() => {
-    const enableAudio = () => {
-      setHasInteracted(true);
-      document.removeEventListener("click", enableAudio);
-    };
-
-    document.addEventListener("click", enableAudio);
-    return () => document.removeEventListener("click", enableAudio);
-  }, []);
 
   return (
     <ThemeProvider theme={getTheme(mode)}>
@@ -82,7 +70,7 @@ function App() {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={playAudio}
+              onClick={handleOnClick}
               autoFocus
               variant="contained"
             >
