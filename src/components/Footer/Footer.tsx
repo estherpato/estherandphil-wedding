@@ -1,4 +1,4 @@
-import { IconButton, styled, Typography } from "@mui/material";
+import { IconButton, styled, Typography, useTheme } from "@mui/material";
 import { ThemeProps } from "../../App";
 import { FC } from "react";
 import { ArrowUpward } from "@mui/icons-material";
@@ -36,6 +36,10 @@ const StyledContact = styled('div')`
     &:first-of-type {
       margin-bottom: 1rem;
     }
+
+    & span {
+      font-size: 14px;
+    }
   }
 
   & .signal-tel {
@@ -51,6 +55,7 @@ const StyledIconButton = styled(IconButton)`
 
 const Footer: FC<ThemeProps> = ({ activeTheme }) => {
   const { t } = useTranslation();
+  const theme = useTheme();
 
   const handleClick = () => {
     globalThis.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -61,22 +66,22 @@ const Footer: FC<ThemeProps> = ({ activeTheme }) => {
       <SectionDivider activeTheme={activeTheme} type="primary" />
       <StyledFooter activeTheme={activeTheme}>
         <StyledContact>
-          <Typography component="h3" variant="body2">Contact us</Typography>
+          <Typography component="h3" variant="body2">{t('FOOTER.CONTACT')}</Typography>
 
           <div className="info">
-            <WhatsAppIcon />
-            <Typography component="span">+34 687 086 711</Typography>
+            <WhatsAppIcon sx={{fontSize: '1.5rem'}}/>
+            <Typography component="span">Esther: +34 687 086 711</Typography>
           </div>
           <div className="info">
             <img src="signal.png" className="signal-icon" />
             <div className="signal-tel">
-              <Typography component="span">+34 687 086 711</Typography>
-              <Typography component="span">+49 176 4423 5500</Typography>
+              <Typography component="span">Esther: +34 687 086 711</Typography>
+              <Typography component="span">Philipp: +49 176 4423 5500</Typography>
             </div>
           </div>
         </StyledContact>
         <StyledIconButton onClick={handleClick} aria-label="Scroll up!">
-          <ArrowUpward aria-hidden="true" />
+          <ArrowUpward aria-hidden="true" style={{fill: theme.palette.text.dark}}/>
         </StyledIconButton>
       </StyledFooter>
     </footer>

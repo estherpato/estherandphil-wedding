@@ -89,6 +89,7 @@ i18n
             BUTTON: 'Done'
           },
           FOOTER: {
+            CONTACT: 'Contact us',
             MESSAGE: "Can’t wait to celebrate with you!"
           }
         }
@@ -171,6 +172,7 @@ i18n
             BUTTON: 'Listo'
           },
           FOOTER: {
+            CONTACT: 'Contacto',
             MESSAGE: "¡Estamos deseando celebrarlo contigo!"
           }
         }
@@ -253,6 +255,7 @@ i18n
             BUTTON: 'Fertig'
           },
           FOOTER: {
+            CONTACT: 'Contact us',
             MESSAGE: "Wir können es kaum erwarten, mit dir zu feiern!"
           }
         }
