@@ -255,7 +255,7 @@ i18n
             BUTTON: 'Fertig'
           },
           FOOTER: {
-            CONTACT: 'Contact us',
+            CONTACT: 'Kontaktiere uns',
             MESSAGE: "Wir können es kaum erwarten, mit dir zu feiern!"
           }
         }

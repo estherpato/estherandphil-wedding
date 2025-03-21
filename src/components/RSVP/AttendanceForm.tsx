@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, styled, TextField, Typography } from "@mui/material";
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, styled, TextField, Typography, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import JSConfetti from 'js-confetti';
 
 const StyledForm = styled('form')`
   display: flex;
@@ -48,6 +49,8 @@ const AttendanceForm = () => {
   const [loading, setLoading] = useState(false);
   const [dialog, setDialog] = useState({ title: '', open: false, message: "" });
 
+  const theme = useTheme();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newFormData = {
       ...formData,
@@ -68,7 +71,20 @@ const AttendanceForm = () => {
         body: new URLSearchParams(formData).toString()
       });
 
-      if(response?.ok) {
+      if (response?.ok) {
+        if (formData.attendance === 'yes') {
+          const jsConfetti = new JSConfetti();
+          jsConfetti.addConfetti({
+            confettiColors: [
+              theme.palette.primary.main,
+              theme.palette.primary.dark,
+              theme.palette.primary.light,
+              theme.palette.secondary.main,
+              theme.palette.secondary.dark,
+              theme.palette.secondary.light,
+            ]
+          });
+        }
         setLoading(false);
         setFormData(initialFormState);
         setDialog({ title: t('MODAL.TITLE_OK'), open: true, message: t('MODAL.SUBMISSION_OK') })
@@ -196,9 +212,9 @@ const AttendanceForm = () => {
         {loading ? <CircularProgress size={24} /> : t('FORM.SEND_BUTTON')}
       </Button>
       <Dialog open={dialog.open} disableEscapeKeyDown>
-        <DialogTitle>{dialog.title}</DialogTitle>
+        <DialogTitle sx={{ color: theme.palette.text.light }}>{dialog.title}</DialogTitle>
         <DialogContent>
-          <Typography>{dialog.message}</Typography>
+          <Typography sx={{ color: theme.palette.text.light }}>{dialog.message}</Typography>
         </DialogContent>
         <DialogActions>
           <Button
