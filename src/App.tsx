@@ -20,6 +20,7 @@ function App() {
   const { mode, switchChecked, setSwitchChecked } = useActiveTheme();
   const { t } = useTranslation();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  let timeoutId: number;
 
   const handleOnClick = () => {
     setHasInteracted(true);
@@ -44,6 +45,20 @@ function App() {
     }
   }, [mode]);
 
+  const handleScroll = () => {
+    globalThis.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    timeoutId = setTimeout(() => {
+      setSwitchChecked((prevState) => {
+        return !prevState;
+      })
+    }, 1000);
+  }
+
+  useEffect(() => {
+    return () => clearInterval(timeoutId);
+  });
+
   useEffect(() => {
     const rootEl = document.querySelector('#root');
     if (rootEl instanceof HTMLElement) {
@@ -62,7 +77,7 @@ function App() {
       <LanguageProvider>
         <Header activeTheme={mode} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
         <Main activeTheme={mode} />
-        <Footer activeTheme={mode} />
+        <Footer activeTheme={mode} handleScroll={handleScroll} />
         <Dialog open={dialogOpen} disableEscapeKeyDown>
           <DialogTitle>{t('MODAL_INIT.TITLE')}</DialogTitle>
           <DialogContent>

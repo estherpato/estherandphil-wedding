@@ -1,5 +1,4 @@
 import { IconButton, styled, Typography, useTheme } from "@mui/material";
-import { ThemeProps } from "../../App";
 import { FC } from "react";
 import { ArrowUpward } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
@@ -51,15 +50,45 @@ const StyledContact = styled('div')`
 const StyledIconButton = styled(IconButton)`
   background-color: ${({ theme }) => theme.palette.secondary.main};
   padding: 1rem;
+  animation: myAnim 2s ease 0s infinite normal forwards;
+
+  @keyframes myAnim {
+	0% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+		transform-origin: center center;
+	}
+
+	10% {
+		animation-timing-function: ease-in;
+		transform: scale(0.91);
+	}
+
+	17% {
+		animation-timing-function: ease-out;
+		transform: scale(0.98);
+	}
+
+	33% {
+		animation-timing-function: ease-in;
+		transform: scale(0.87);
+	}
+
+	45% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+}
 `
 
-const Footer: FC<ThemeProps> = ({ activeTheme }) => {
+type FooterProps = {
+  activeTheme: 'dark' | 'light';
+  handleScroll: () => void;
+}
+
+const Footer: FC<FooterProps> = ({ activeTheme, handleScroll }) => {
   const { t } = useTranslation();
   const theme = useTheme();
-
-  const handleClick = () => {
-    globalThis.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }
 
   return (
     <footer>
@@ -69,7 +98,7 @@ const Footer: FC<ThemeProps> = ({ activeTheme }) => {
           <Typography component="h3" variant="body2">{t('FOOTER.CONTACT')}</Typography>
 
           <div className="info">
-            <WhatsAppIcon sx={{fontSize: '1.5rem'}}/>
+            <WhatsAppIcon sx={{ fontSize: '1.5rem' }} />
             <Typography component="span">Esther: +34 687 086 711</Typography>
           </div>
           <div className="info">
@@ -80,8 +109,8 @@ const Footer: FC<ThemeProps> = ({ activeTheme }) => {
             </div>
           </div>
         </StyledContact>
-        <StyledIconButton onClick={handleClick} aria-label="Scroll up!">
-          <ArrowUpward aria-hidden="true" style={{fill: theme.palette.text.dark}}/>
+        <StyledIconButton onClick={handleScroll} aria-label="Scroll up!">
+          <ArrowUpward aria-hidden="true" style={{ fill: theme.palette.text.dark }} />
         </StyledIconButton>
       </StyledFooter>
     </footer>
