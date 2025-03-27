@@ -83,6 +83,12 @@ i18n
             TITLE_ERROR: 'Oops!',
             ERROR_MESSAGE: 'An unexpected error occurred. Try again later.'
           },
+          MODAL_NEGATIVE: {
+            TITLE: 'Hold on!!!',
+            MESSAGE: 'What do you mean "NO"? Are you sure? 😟',
+            BUTTON_1: 'Not really...',
+            BUTTON_2: 'Yes!',
+          },
           MODAL_INIT: {
             TITLE: 'Hey!',
             MESSAGE: 'To enjoy the full experience, you should turn your volume up!',
@@ -166,6 +172,12 @@ i18n
             TITLE_ERROR: '¡Ups!',
             ERROR_MESSAGE: 'Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde.'
           },
+          MODAL_NEGATIVE: {
+            TITLE: '¡Espera!',
+            MESSAGE: '¿Cómo que "NO"? ¿Estás segur@? 😟',
+            BUTTON_1: 'No mucho...',
+            BUTTON_2: '¡Sí!',
+          },
           MODAL_INIT: {
             TITLE: '¡Hey!',
             MESSAGE: 'Para disfrutar de la experiencia, ¡sube el volumen!',
@@ -248,6 +260,12 @@ i18n
             SUBMISSION_KO: 'Fehlgeschlagen. Bitte erneut versuchen.',
             TITLE_ERROR: 'Oops!',
             ERROR_MESSAGE: 'Ein unerwarteter Fehler ist aufgetreten. Versuche es später noch einmal.'
+          },
+          MODAL_NEGATIVE: {
+            TITLE: 'Warte!!!',
+            MESSAGE: 'Was meinst du mit "NEIN"? Bist du dir sicher? 😟',
+            BUTTON_1: 'Nich wirklich...',
+            BUTTON_2: 'Ja!',
           },
           MODAL_INIT: {
             TITLE: 'Hey!',

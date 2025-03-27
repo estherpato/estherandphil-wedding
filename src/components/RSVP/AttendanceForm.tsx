@@ -47,7 +47,8 @@ const AttendanceForm = () => {
   };
   const [formData, setFormData] = useState<Form>(initialFormState);
   const [loading, setLoading] = useState(false);
-  const [dialog, setDialog] = useState({ title: '', open: false, message: "" });
+  const [confirmationDialog, setConfirmationDialog] = useState({ title: '', open: false, message: "" });
+  const [attendanceDialog, setAttendanceDialogDialog] = useState({ title: '', open: false, message: "" });
 
   const theme = useTheme();
 
@@ -58,6 +59,28 @@ const AttendanceForm = () => {
     }
     setFormData(newFormData);
   };
+
+  const throwGoodConfetti = () => {
+    const jsConfetti = new JSConfetti();
+    jsConfetti.addConfetti({
+      confettiColors: [
+        theme.palette.primary.main,
+        theme.palette.primary.dark,
+        theme.palette.primary.light,
+        theme.palette.secondary.main,
+        theme.palette.secondary.dark,
+        theme.palette.secondary.light,
+      ]
+    });
+  }
+
+  const throwBadConfetti = () => {
+    const jsConfetti = new JSConfetti();
+    jsConfetti.addConfetti({
+      emojis: ['😭'],
+      confettiNumber: 100,
+    });
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -73,37 +96,40 @@ const AttendanceForm = () => {
 
       if (response?.ok) {
         if (formData.attendance === 'yes') {
-          const jsConfetti = new JSConfetti();
-          jsConfetti.addConfetti({
-            confettiColors: [
-              theme.palette.primary.main,
-              theme.palette.primary.dark,
-              theme.palette.primary.light,
-              theme.palette.secondary.main,
-              theme.palette.secondary.dark,
-              theme.palette.secondary.light,
-            ]
-          });
+          throwGoodConfetti();
+        } else {
+          throwBadConfetti();
         }
         setLoading(false);
         setFormData(initialFormState);
-        setDialog({ title: t('MODAL.TITLE_OK'), open: true, message: t('MODAL.SUBMISSION_OK') })
+        setConfirmationDialog({ title: t('MODAL.TITLE_OK'), open: true, message: t('MODAL.SUBMISSION_OK') })
       } else {
         setLoading(false);
-        setDialog({ title: t('MODAL.TITLE_ERROR'), open: true, message: t('MODAL.SUBMISSION_KO') });
+        setConfirmationDialog({ title: t('MODAL.TITLE_ERROR'), open: true, message: t('MODAL.SUBMISSION_KO') });
       }
     } catch (error) {
       console.error(error);
       setLoading(false);
-      setDialog({ title: t('MODAL.TITLE_ERROR'), open: true, message: t('MODAL.ERROR_MESSAGE') });
+      setConfirmationDialog({ title: t('MODAL.TITLE_ERROR'), open: true, message: t('MODAL.ERROR_MESSAGE') });
     }
   };
+
+  const onCloseAttendanceDialog = () => {
+    formData.attendance = 'yes';
+    setAttendanceDialogDialog({ title: '', open: false, message: '' });
+  }
 
   useEffect(() => {
     if (!formData.fullName && inputNameRef) {
       inputNameRef.current = "";
     }
   }, [formData.fullName]);
+
+  useEffect(() => {
+    if (formData.attendance === 'no') {
+      setAttendanceDialogDialog({ title: t('MODAL_NEGATIVE.TITLE'), open: true, message: t('MODAL_NEGATIVE.MESSAGE') });
+    }
+  }, [formData.attendance])
 
   return (
     <StyledForm id="attendance-form" autoComplete="off" onSubmit={handleSubmit}>
@@ -211,14 +237,36 @@ const AttendanceForm = () => {
       <Button variant="contained" fullWidth sx={{ mt: 2 }} type="submit" disabled={loading}>
         {loading ? <CircularProgress size={24} /> : t('FORM.SEND_BUTTON')}
       </Button>
-      <Dialog open={dialog.open} disableEscapeKeyDown>
-        <DialogTitle sx={{ color: theme.palette.text.light }}>{dialog.title}</DialogTitle>
+      <Dialog open={attendanceDialog.open} disableEscapeKeyDown>
+        <DialogTitle sx={{ color: theme.palette.text.light }}>{attendanceDialog.title}</DialogTitle>
         <DialogContent>
-          <Typography sx={{ color: theme.palette.text.light }}>{dialog.message}</Typography>
+          <Typography sx={{ color: theme.palette.text.light }}>{attendanceDialog.message}</Typography>
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={() => setDialog({ title: "", open: false, message: "" })}
+            onClick={onCloseAttendanceDialog}
+            autoFocus
+            variant="outlined"
+          >
+            {t('MODAL_NEGATIVE.BUTTON_1')}
+          </Button>
+          <Button
+            onClick={() => setAttendanceDialogDialog({ title: "", open: false, message: "" })}
+            autoFocus
+            variant="contained"
+          >
+            {t('MODAL_NEGATIVE.BUTTON_2')}
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog open={confirmationDialog.open} disableEscapeKeyDown>
+        <DialogTitle sx={{ color: theme.palette.text.light }}>{confirmationDialog.title}</DialogTitle>
+        <DialogContent>
+          <Typography sx={{ color: theme.palette.text.light }}>{confirmationDialog.message}</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setConfirmationDialog({ title: "", open: false, message: "" })}
             autoFocus
             variant="contained"
           >
