@@ -32,15 +32,18 @@ function App() {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
+      audioRef.current.loop = false;
     }
 
     audioRef.current = new Audio(mode === "light" ? "Geschlossene_Augen.mp3" : "kiss.mp3");
+    audioRef.current.loop = true;
     audioRef.current.play().catch((error) => console.error("Playback error:", error));
 
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
+        audioRef.current.loop = false;
       }
     }
   }, [mode]);
