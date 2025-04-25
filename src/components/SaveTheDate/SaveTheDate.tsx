@@ -4,7 +4,7 @@ import { ThemeProps } from "../../App";
 import { SectionTitle } from "../common/SectionTitle";
 import { Trans, useTranslation } from "react-i18next";
 
-const calendarURL = 'https://www.google.com/calendar/render?action=TEMPLATE&text=Esther%26Phil+Wedding%21+%F0%9F%92%8D&dates=20260606T160000Z%2Fundefined';
+const calendarURL = 'https://www.google.com/calendar/render?action=TEMPLATE&text=Esther+%26+Phil+Wedding+%F0%9F%92%8D&dates=20260606T160000Z/20260606T180000Z&details=Join+us+to+celebrate+the+wedding+of+Esther+and+Phil%21';
 const locationURL = "https://www.google.com/maps/place//data=!4m2!3m1!1s0xd405191559f99fb:0xfd2f25e4b81c3e8d?sa=X&ved=1t:8290&ictx=111";
 
 const StyledSaveTheDate = styled('section') <{ activeTheme: string }>`
