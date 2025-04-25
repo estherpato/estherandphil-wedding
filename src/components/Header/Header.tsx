@@ -1,4 +1,4 @@
-import { FormControl, MenuItem, Select, SelectChangeEvent, styled, Switch, Typography } from '@mui/material';
+import { FormControl, MenuItem, Select, SelectChangeEvent, styled, Switch, Typography, useTheme } from '@mui/material';
 import { FC } from 'react';
 import { LanguageType } from '../../enums/LanguageType.enum';
 import { useLanguage } from '../../hooks/useLanguage';
@@ -27,7 +27,7 @@ const StyledHeader = styled('header') <{ activeTheme: string }>`
   }
 `;
 
-const StyledActions = styled('div')`
+const StyledActions = styled('div') <{ activeTheme: string }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -44,7 +44,8 @@ const StyledSwitchWrapper = styled('div')`
   align-items: center;
   gap: 0.5rem;
   background-color: ${({ theme }) => theme.palette.primary.light};
-  padding: 0.25rem 1rem;
+  padding: 0 1rem;
+  height: 40px;
   border-radius: 50px;
 
   & img {
@@ -107,6 +108,7 @@ type HeaderProps = {
 
 const Header: FC<HeaderProps> = ({ activeTheme, switchChecked, setSwitchChecked }) => {
   const { language, handleLanguageChange } = useLanguage();
+  const theme = useTheme();
 
   const handleChange = (event: SelectChangeEvent) => {
     const newLang = event.target.value as LanguageType;
@@ -115,17 +117,25 @@ const Header: FC<HeaderProps> = ({ activeTheme, switchChecked, setSwitchChecked 
 
   return (
     <StyledHeader activeTheme={activeTheme}>
-      <StyledActions>
+      <StyledActions activeTheme={activeTheme}>
         <FormControl fullWidth>
           <Select
             id="language-select"
             value={language}
             onChange={handleChange}
             aria-label="language selection"
+            size="small"
+            color="secondary"
           >
-            <MenuItem value={LanguageType.ENGLISH}>🇬🇧 English</MenuItem>
-            <MenuItem value={LanguageType.SPANISH}>🇪🇸 Español</MenuItem>
-            <MenuItem value={LanguageType.GERMAN}>🇩🇪 Deutsch</MenuItem>
+            <MenuItem value={LanguageType.ENGLISH}>
+              <Typography sx={{ color: theme.palette.text.light }}>🇬🇧 English</Typography>
+            </MenuItem>
+            <MenuItem value={LanguageType.SPANISH}>
+              <Typography sx={{ color: theme.palette.text.light }}>🇪🇸 Español</Typography>
+            </MenuItem>
+            <MenuItem value={LanguageType.GERMAN}>
+              <Typography sx={{ color: theme.palette.text.light }}>🇩🇪 Deutsch</Typography>
+            </MenuItem>
           </Select>
         </FormControl>
         <StyledSwitchWrapper>

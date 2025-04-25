@@ -2,12 +2,12 @@ import Countdown from "../Countdown/Countdown";
 import SaveTheDate from "../SaveTheDate/SaveTheDate";
 import { FC } from "react";
 import { ThemeProps } from "../../App";
-import { StyledBoxPrimary, StyledBoxSecondary } from "./StyledBox";
+import { StyledBoxPrimary, StyledBoxSecondary } from "../common/StyledBox";
 import OurStory from "../OurStory/OurStory";
 import Schedule from "../Schedule/Schedule";
 import Rsvp from "../RSVP/Rsvp";
-import { StyledBackgroundPrimary } from "./StyledBackground";
-import SectionDivider from "./SectionDivider";
+import { StyledBackgroundPrimary } from "../common/StyledBackground";
+import SectionDivider from "../common/SectionDivider";
 
 const Main: FC<ThemeProps> = ({ activeTheme }) => {
   const deadline = "June, 6, 2026";

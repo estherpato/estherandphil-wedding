@@ -4,7 +4,7 @@ import { SectionTitle } from "../common/SectionTitle";
 import { useTranslation } from "react-i18next";
 
 const StyledRsvp = styled('section')`
-  padding: 0 2rem 2rem;
+  padding: 0 2rem;
 
   & form {
     margin-top: 1rem;

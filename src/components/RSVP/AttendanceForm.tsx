@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, styled, TextField, Typography } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, styled, TextField, Typography, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import JSConfetti from 'js-confetti';
 
 const StyledForm = styled('form')`
   display: flex;
@@ -29,6 +30,7 @@ type Form = {
 
 const AttendanceForm = () => {
   const { t } = useTranslation();
+  const inputNameRef = useRef('');
 
   const postUrl = "https://script.google.com/macros/s/AKfycbyl37Xag-xWxx4r3cnp5RkXh6hUg_gEwz16w2rvBFMw-PNVZvVmDgSDSGd37Nucgw3x/exec";
   const initialFormState: Form = {
@@ -45,34 +47,92 @@ const AttendanceForm = () => {
   };
   const [formData, setFormData] = useState<Form>(initialFormState);
   const [loading, setLoading] = useState(false);
-  const [dialog, setDialog] = useState({ title: '', open: false, message: "" });
+  const [confirmationDialog, setConfirmationDialog] = useState({ title: '', open: false, message: "" });
+  const [attendanceDialog, setAttendanceDialogDialog] = useState({ title: '', open: false, message: "" });
+
+  const theme = useTheme();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const newFormData = {
+      ...formData,
+      [e.target.name]: e.target.value
+    }
+    setFormData(newFormData);
   };
+
+  const throwGoodConfetti = () => {
+    const jsConfetti = new JSConfetti();
+    jsConfetti.addConfetti({
+      confettiColors: [
+        theme.palette.primary.main,
+        theme.palette.primary.dark,
+        theme.palette.primary.light,
+        theme.palette.secondary.main,
+        theme.palette.secondary.dark,
+        theme.palette.secondary.light,
+      ]
+    });
+  }
+
+  const throwBadConfetti = () => {
+    const jsConfetti = new JSConfetti();
+    jsConfetti.addConfetti({
+      emojis: ['😭'],
+      confettiNumber: 100,
+    });
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.attendance === '') return;
     setLoading(true);
+
     try {
       const response = await fetch(postUrl, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString()
       });
-      setLoading(false);
-      setFormData(initialFormState);
-      setDialog({ title: t('MODAL.TITLE_OK'), open: true, message: response.ok ? t('MODAL.SUBMISSION_OK') : t('MODAL.SUBMISSION_KO') });
+
+      if (response?.ok) {
+        if (formData.attendance === 'yes') {
+          throwGoodConfetti();
+        } else {
+          throwBadConfetti();
+        }
+        setLoading(false);
+        setFormData(initialFormState);
+        setConfirmationDialog({ title: t('MODAL.TITLE_OK'), open: true, message: t('MODAL.SUBMISSION_OK') })
+      } else {
+        setLoading(false);
+        setConfirmationDialog({ title: t('MODAL.TITLE_ERROR'), open: true, message: t('MODAL.SUBMISSION_KO') });
+      }
     } catch (error) {
       console.error(error);
       setLoading(false);
-      setDialog({ title: t('MODAL.TITLE_ERROR'), open: true, message: t('MODAL.ERROR_MESSAGE') });
+      setConfirmationDialog({ title: t('MODAL.TITLE_ERROR'), open: true, message: t('MODAL.ERROR_MESSAGE') });
     }
   };
 
+  const onCloseAttendanceDialog = () => {
+    formData.attendance = 'yes';
+    setAttendanceDialogDialog({ title: '', open: false, message: '' });
+  }
+
+  useEffect(() => {
+    if (!formData.fullName && inputNameRef) {
+      inputNameRef.current = "";
+    }
+  }, [formData.fullName]);
+
+  useEffect(() => {
+    if (formData.attendance === 'no') {
+      setAttendanceDialogDialog({ title: t('MODAL_NEGATIVE.TITLE'), open: true, message: t('MODAL_NEGATIVE.MESSAGE') });
+    }
+  }, [formData.attendance])
+
   return (
-    <StyledForm autoComplete="off" onSubmit={handleSubmit}>
+    <StyledForm id="attendance-form" autoComplete="off" onSubmit={handleSubmit}>
       <TextField
         required
         id="fullName"
@@ -80,6 +140,7 @@ const AttendanceForm = () => {
         label={t('FORM.NAME_LABEL')}
         variant="outlined"
         onChange={handleChange}
+        inputRef={inputNameRef}
       />
 
       <StyledAttendanceFormControl fullWidth required>
@@ -174,16 +235,38 @@ const AttendanceForm = () => {
       )}
 
       <Button variant="contained" fullWidth sx={{ mt: 2 }} type="submit" disabled={loading}>
-        {loading ? <CircularProgress size={24} /> : "Send"}
+        {loading ? <CircularProgress size={24} /> : t('FORM.SEND_BUTTON')}
       </Button>
-      <Dialog open={dialog.open} disableEscapeKeyDown>
-        <DialogTitle>{dialog.title}</DialogTitle>
+      <Dialog open={attendanceDialog.open} disableEscapeKeyDown>
+        <DialogTitle sx={{ color: theme.palette.text.light }}>{attendanceDialog.title}</DialogTitle>
         <DialogContent>
-          <Typography>{dialog.message}</Typography>
+          <Typography sx={{ color: theme.palette.text.light }}>{attendanceDialog.message}</Typography>
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={() => setDialog({ title: "", open: false, message: "" })}
+            onClick={onCloseAttendanceDialog}
+            autoFocus
+            variant="outlined"
+          >
+            {t('MODAL_NEGATIVE.BUTTON_1')}
+          </Button>
+          <Button
+            onClick={() => setAttendanceDialogDialog({ title: "", open: false, message: "" })}
+            autoFocus
+            variant="contained"
+          >
+            {t('MODAL_NEGATIVE.BUTTON_2')}
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog open={confirmationDialog.open} disableEscapeKeyDown>
+        <DialogTitle sx={{ color: theme.palette.text.light }}>{confirmationDialog.title}</DialogTitle>
+        <DialogContent>
+          <Typography sx={{ color: theme.palette.text.light }}>{confirmationDialog.message}</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setConfirmationDialog({ title: "", open: false, message: "" })}
             autoFocus
             variant="contained"
           >

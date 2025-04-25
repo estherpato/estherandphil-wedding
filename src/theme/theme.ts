@@ -1,4 +1,11 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+
+declare module '@mui/material/styles' {
+  interface TypeText {
+    light: string;
+    dark: string;
+  }
+}
 
 export const getTheme = (mode: 'light' | 'dark') => createTheme({
   palette: {
@@ -12,7 +19,9 @@ export const getTheme = (mode: 'light' | 'dark') => createTheme({
     text: {
       primary: '#000C2B',
       secondary: '#000C2B',
-      disabled: '#6C6C6C'
+      disabled: '#6C6C6C',
+      light: mode === 'light' ? '#000C2B' : '#FFFFFF',
+      dark: mode === 'light' ? '#000C2B' : '#000C2B',
     },
     info: {
       main: '#6C6C6C',
