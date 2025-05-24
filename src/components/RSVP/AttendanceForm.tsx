@@ -32,7 +32,7 @@ const AttendanceForm = () => {
   const { t } = useTranslation();
   const inputNameRef = useRef('');
 
-  const postUrl = "https://script.google.com/macros/s/AKfycbyl37Xag-xWxx4r3cnp5RkXh6hUg_gEwz16w2rvBFMw-PNVZvVmDgSDSGd37Nucgw3x/exec";
+  const postUrl = "https://script.google.com/macros/s/AKfycbxO6eov3HE12omnlPovuIaAJv71O699zwYo9wMALBu-1BkYsDanIfREfF-ab8AyaUdU/exec";
   const initialFormState: Form = {
     fullName: "",
     attendance: "",
