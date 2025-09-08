@@ -250,7 +250,7 @@ i18n
             PARTNER_NAME_LABEL: 'Vor- und Nachname deiner Begleitung',
             PARTNER_NOTE: 'Vergiss nicht, uns im Voraus mitzuteilen, ob du eine Begleitung zur Hochzeit mitbringst.',
             HOTEL: 'Brauchst du ein Hotelzimmer?',
-            HOTEL_NOTE1: 'Bitte denkt daran, dass die Zimmer nur vom 5. bis 7. Juni verfügbar sind.',
+            HOTEL_NOTE1: 'Achtung! Die Zimmer sind erst ab 5. Juni verfügbar und nur bis 7. Juni garantiert.',
             HOTEL_NOTE2: 'Leider können wir aufgrund von Umständen, die wir nicht beeinflussen können, keine Zimmer für Termine vor Freitag, dem 5. Juni, reservieren.',
             DATE_FROM: 'Von wann?',
             DATE_TO: 'Bis wann?',
