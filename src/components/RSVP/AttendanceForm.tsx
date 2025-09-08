@@ -190,8 +190,19 @@ const AttendanceForm = () => {
           {formData.hotelRoom === "yes" && (
             <>
               <FormControl fullWidth required>
+                <Typography fontSize={14}>{t('FORM.HOTEL_NOTE1')}</Typography>
+                <Typography fontSize={14} marginBottom={2}>{t('FORM.HOTEL_NOTE2')}</Typography>
                 <FormLabel htmlFor="fromDate">{t('FORM.DATE_FROM')}</FormLabel>
-                <Input id="fromDate" name="fromDate" type="date" value={formData.fromDate} onChange={handleChange} />
+                <Input
+                  id="fromDate"
+                  name="fromDate"
+                  type="date"
+                  value={formData.fromDate || "2026-06-05"}
+                  onChange={handleChange}
+                  inputProps={{
+                    min: "2026-06-05"
+                  }}
+                />
               </FormControl>
               <FormControl fullWidth required>
                 <FormLabel htmlFor="toDate">{t('FORM.DATE_TO')}</FormLabel>
