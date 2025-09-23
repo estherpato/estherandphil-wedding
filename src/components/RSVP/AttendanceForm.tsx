@@ -16,32 +16,31 @@ const StyledAttendanceFormControl = styled(FormControl)`
 `
 
 const StyledMenuItem = styled(MenuItem) <{ activeTheme: string }>`
-  color: ${({activeTheme}) => activeTheme === 'light' ? '#000C2B' : '#FFFFFF'};
+  color: ${({ activeTheme }) => activeTheme === 'light' ? '#000C2B' : '#FFFFFF'};
 `;
+
+type RadioAnswers = "yes" | "no" | "maybe";
 
 type Form = {
   fullName: string;
-  attendance: string;
-  partner: string;
+  attendance: "" | "yes" | "no";
+  partner: RadioAnswers;
   partnerName: string;
-  bringChildren: string;
+  bringChildren: RadioAnswers;
   howManyChildren: string;
-  child1: string;
-  child2: string;
-  child3: string;
-  hotelRoom: string;
+  hotelRoom: RadioAnswers;
   fromDate: string;
   toDate: string;
-  food: string;
+  food: RadioAnswers;
   foodRestriction: string;
   comments: string;
-}
+} & Record<`child${number}`, string>;
 
 type AttendanceFormProps = {
   activeTheme: 'dark' | 'light';
 }
 
-const AttendanceForm: FC<AttendanceFormProps> = ({activeTheme}) => {
+const AttendanceForm: FC<AttendanceFormProps> = ({ activeTheme }) => {
   const { t } = useTranslation();
   const inputNameRef = useRef('');
 
@@ -53,9 +52,6 @@ const AttendanceForm: FC<AttendanceFormProps> = ({activeTheme}) => {
     partnerName: "",
     bringChildren: "no",
     howManyChildren: "",
-    child1: "",
-    child2: "",
-    child3: "",
     hotelRoom: "no",
     fromDate: "",
     toDate: "",
@@ -73,12 +69,12 @@ const AttendanceForm: FC<AttendanceFormProps> = ({activeTheme}) => {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent
   ) => {
-    const { name, value } = event.target;
-    const newFormData = {
-      ...formData,
+    const { name, value } = event.target as { name: string; value: string };
+
+    setFormData(prev => ({
+      ...prev,
       [name]: value,
-    };
-    setFormData(newFormData);
+    }));
   };
 
   const throwGoodConfetti = () => {
@@ -198,7 +194,7 @@ const AttendanceForm: FC<AttendanceFormProps> = ({activeTheme}) => {
             )}
           {
             formData.partner === "maybe" &&
-            <Typography variant="body2" fontSize={20} sx={{marginTop: '-1rem'}}>
+            <Typography variant="body2" fontSize={20} sx={{ marginTop: '-1rem' }}>
               {t('FORM.PARTNER_NOTE')}
             </Typography>
           }
@@ -229,25 +225,28 @@ const AttendanceForm: FC<AttendanceFormProps> = ({activeTheme}) => {
                   <StyledMenuItem activeTheme={activeTheme} value={3}>3</StyledMenuItem>
                 </Select>
               </FormControl>
-              {Number(formData.howManyChildren) > 0 && Array.from({ length: Number(formData.howManyChildren) }, (_, index) => {
-                const valueName = `child${index + 1}` as const;
-                return (
-                  <TextField
-                    key={index}
-                    fullWidth
-                    sx={{ padding: '0' }}
-                    label={t('FORM.CHILD_NAME_AGE', { index: index + 1 })}
-                    name={valueName}
-                    value={formData[valueName] || ""}
-                    onChange={handleChange}
-                  />
-                )
-              })}
+              {Number(formData.howManyChildren) > 0 &&
+                Array.from({ length: Number(formData.howManyChildren) }, (_, index) => {
+                  const valueName: `child${number}` = `child${index + 1}`;
+
+                  return (
+                    <TextField
+                      key={valueName}
+                      fullWidth
+                      sx={{ padding: 0 }}
+                      label={t('FORM.CHILD_NAME_AGE', { index: index + 1 })}
+                      name={valueName}
+                      value={formData[valueName] ?? ""}
+                      onChange={handleChange}
+                    />
+                  );
+                })}
+
             </Fragment>
           }
           {
             formData.bringChildren === "maybe" &&
-            <Typography variant="body2" fontSize={20} sx={{marginTop: '-1rem'}}>
+            <Typography variant="body2" fontSize={20} sx={{ marginTop: '-1rem' }}>
               {t('FORM.CHILD_NOTE')}
             </Typography>
           }
@@ -287,7 +286,7 @@ const AttendanceForm: FC<AttendanceFormProps> = ({activeTheme}) => {
           )}
           {
             formData.hotelRoom === "maybe" &&
-            <Typography variant="body2" fontSize={20} sx={{marginTop: '-1rem'}}>
+            <Typography variant="body2" fontSize={20} sx={{ marginTop: '-1rem' }}>
               {t('FORM.HOTEL_NOTE')}
             </Typography>
           }
