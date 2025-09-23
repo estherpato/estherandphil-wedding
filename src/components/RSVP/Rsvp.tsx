@@ -2,6 +2,7 @@ import { styled, Typography } from "@mui/material";
 import AttendanceForm from "./AttendanceForm";
 import { SectionTitle } from "../common/SectionTitle";
 import { useTranslation } from "react-i18next";
+import { FC } from "react";
 
 const StyledRsvp = styled('section')`
   padding: 0 2rem;
@@ -11,7 +12,11 @@ const StyledRsvp = styled('section')`
   }
 `
 
-const Rsvp = () => {
+type RsvpProps = {
+  activeTheme: 'dark' | 'light';
+}
+
+const Rsvp: FC<RsvpProps> = ({activeTheme}) => {
   const { t } = useTranslation();
 
   return (
@@ -34,7 +39,7 @@ const Rsvp = () => {
           {t('RSVP.P2')}
         </Typography>
       </div>
-      <AttendanceForm />
+      <AttendanceForm activeTheme={activeTheme} />
     </StyledRsvp>
   )
 };
