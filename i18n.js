@@ -1,4 +1,4 @@
-import { Html } from '@mui/icons-material';
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -67,6 +67,10 @@ i18n
             PLUS_ONE: 'Are you bringing a +1 along?',
             PARTNER_NAME_LABEL: 'Full name of your partner',
             PARTNER_NOTE: 'Remember to let us know well in advance if you will be bringing a partner to the wedding.',
+            CHILDREN_QUESTION: 'Are you bringing your children along?',
+            HOW_MANY_CHILDREN: 'How many?',
+            CHILD_NAME_AGE: 'Child #{{index}}: name and age',
+            CHILD_NOTE: ' Please, remember to let us know well in advance so we have everything ready for them too!',
             HOTEL: 'Do you need a hotel room?',
             HOTEL_NOTE1: 'Please note that the rooms are guaranteed to be available from 5 to 7 June.',
             HOTEL_NOTE2: 'Unfortunately, due to circumstances beyond our control, we are unable to reserve rooms for any dates prior to Friday 5 June.',
@@ -158,6 +162,10 @@ i18n
             PLUS_ONE: '¿Vas a traer un +1?',
             PARTNER_NAME_LABEL: 'Nombre completo de tu +1',
             PARTNER_NOTE: 'Recuerda avisarnos con suficiente antelación si vas a traer +1 a la boda.',
+            CHILDREN_QUESTION: "¿Vas a traer a tus hij@s?",
+            HOW_MANY_CHILDREN: "¿Cuántos?",
+            CHILD_NAME_AGE: "Hij@ #{{index}}: nombre y edad",
+            CHILD_NOTE: "¡Porfa, acuérdate de avisarnos con tiempo para tenerlo todo listo también para ellos!",
             HOTEL: '¿Necesita una habitación de hotel?',
             HOTEL_NOTE1: 'Ten en cuenta que las habitaciones estarán disponibles del 5 al 7 de junio.',
             HOTEL_NOTE2: 'Por desgracia, por motivos que no dependen de nosotros, no podemos reservar habitaciones para fechas anteriores al viernes 5 de junio.',
@@ -249,6 +257,10 @@ i18n
             PLUS_ONE: 'Kommst du in Begleitung?',
             PARTNER_NAME_LABEL: 'Vor- und Nachname deiner Begleitung',
             PARTNER_NOTE: 'Vergiss nicht, uns im Voraus mitzuteilen, ob du eine Begleitung zur Hochzeit mitbringst.',
+            CHILDREN_QUESTION: 'Bringst du deine Kinder mit?',
+            HOW_MANY_CHILDREN: 'Wie viele?',
+            CHILD_NAME_AGE: 'Kind #{{index}}: Name und Alter',
+            CHILD_NOTE: 'Vergiss nicht, uns im Voraus mitzuteilen, ob du Kinder zur Hochzeit mitbringst.',
             HOTEL: 'Brauchst du ein Hotelzimmer?',
             HOTEL_NOTE1: 'Achtung! Die Zimmer sind erst ab 5. Juni verfügbar und nur bis 7. Juni garantiert.',
             HOTEL_NOTE2: 'Leider können wir aufgrund von Umständen, die wir nicht beeinflussen können, keine Zimmer für Termine vor Freitag, dem 5. Juni, reservieren.',

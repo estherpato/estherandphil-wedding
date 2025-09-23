@@ -33,9 +33,9 @@ const Schedule: FC = () => {
 
   const rows = [
     createData(1, '18:00', t('SCHEDULE.ROW1')),
-    createData(2, '19:00', t('SCHEDULE.ROW2')),
-    createData(3, '20:30', t('SCHEDULE.ROW3')),
-    createData(4, '22:00', t('SCHEDULE.ROW4')),
+    createData(2, '19:30', t('SCHEDULE.ROW2')),
+    createData(3, '22:00', t('SCHEDULE.ROW3')),
+    createData(4, '24:00', t('SCHEDULE.ROW4')),
   ]
 
   return (

@@ -26,7 +26,7 @@ const Main: FC<ThemeProps> = ({ activeTheme }) => {
       <StyledBoxSecondary>
         <Schedule />
       </StyledBoxSecondary>
-      <Rsvp />
+      <Rsvp activeTheme={activeTheme} />
     </main>
   );
 }

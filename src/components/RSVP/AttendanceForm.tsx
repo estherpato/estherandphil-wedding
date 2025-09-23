@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, styled, TextField, Typography, useTheme } from "@mui/material";
+import { FC, Fragment, useEffect, useRef, useState } from "react";
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, Input, InputLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, styled, TextField, Typography, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import JSConfetti from 'js-confetti';
 
 const StyledForm = styled('form')`
   display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 const StyledAttendanceFormControl = styled(FormControl)`
@@ -15,11 +15,20 @@ const StyledAttendanceFormControl = styled(FormControl)`
   border: ${({ theme }) => `2px solid ${theme.palette.primary.main}`};
 `
 
+const StyledMenuItem = styled(MenuItem) <{ activeTheme: string }>`
+  color: ${({activeTheme}) => activeTheme === 'light' ? '#000C2B' : '#FFFFFF'};
+`;
+
 type Form = {
   fullName: string;
   attendance: string;
   partner: string;
   partnerName: string;
+  bringChildren: string;
+  howManyChildren: string;
+  child1: string;
+  child2: string;
+  child3: string;
   hotelRoom: string;
   fromDate: string;
   toDate: string;
@@ -28,7 +37,11 @@ type Form = {
   comments: string;
 }
 
-const AttendanceForm = () => {
+type AttendanceFormProps = {
+  activeTheme: 'dark' | 'light';
+}
+
+const AttendanceForm: FC<AttendanceFormProps> = ({activeTheme}) => {
   const { t } = useTranslation();
   const inputNameRef = useRef('');
 
@@ -38,6 +51,11 @@ const AttendanceForm = () => {
     attendance: "",
     partner: "no",
     partnerName: "",
+    bringChildren: "no",
+    howManyChildren: "",
+    child1: "",
+    child2: "",
+    child3: "",
     hotelRoom: "no",
     fromDate: "",
     toDate: "",
@@ -52,11 +70,14 @@ const AttendanceForm = () => {
 
   const theme = useTheme();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent
+  ) => {
+    const { name, value } = event.target;
     const newFormData = {
       ...formData,
-      [e.target.name]: e.target.value
-    }
+      [name]: value,
+    };
     setFormData(newFormData);
   };
 
@@ -144,7 +165,7 @@ const AttendanceForm = () => {
       />
 
       <StyledAttendanceFormControl fullWidth required>
-        <FormLabel id="attendance">{t('FORM.CONFIRMATION')}</FormLabel>
+        <FormLabel id="attendance-label" htmlFor="attendance">{t('FORM.CONFIRMATION')}</FormLabel>
         <RadioGroup name="attendance" value={formData.attendance} onChange={handleChange} row>
           <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
           <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
@@ -157,30 +178,82 @@ const AttendanceForm = () => {
             {t('FORM.EXTRA_QUESTIONS')}
           </Typography>
           <FormControl fullWidth required>
-            <FormLabel id="partner">{t('FORM.PLUS_ONE')}</FormLabel>
+            <FormLabel id="partner-label" htmlFor="partner">{t('FORM.PLUS_ONE')}</FormLabel>
             <RadioGroup name="partner" value={formData.partner} onChange={handleChange} row>
               <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
               <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
               <FormControlLabel value="maybe" control={<Radio />} label={t('FORM.UNSURE')} />
             </RadioGroup>
           </FormControl>
-          {formData.partner === "yes" && (
-            <TextField
-              required
-              id="partnerName"
-              name="partnerName"
-              label={t('FORM.PARTNER_NAME_LABEL')}
-              variant="outlined"
-              onChange={handleChange}
-            />
-          )}
-          {formData.partner === "maybe" &&
-            <Typography variant="body2" fontSize={20}>
+          {
+            formData.partner === "yes" && (
+              <TextField
+                required
+                id="partnerName"
+                name="partnerName"
+                label={t('FORM.PARTNER_NAME_LABEL')}
+                variant="outlined"
+                onChange={handleChange}
+              />
+            )}
+          {
+            formData.partner === "maybe" &&
+            <Typography variant="body2" fontSize={20} sx={{marginTop: '-1rem'}}>
               {t('FORM.PARTNER_NOTE')}
-            </Typography>}
+            </Typography>
+          }
 
           <FormControl fullWidth required>
-            <FormLabel id="hotelRoom">{t('FORM.HOTEL')}</FormLabel>
+            <FormLabel id="bringChildren-label" htmlFor="bringChildren">{t('FORM.CHILDREN_QUESTION')}</FormLabel>
+            <RadioGroup id="bringChildren" name="bringChildren" value={formData.bringChildren} onChange={handleChange} row>
+              <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
+              <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
+              <FormControlLabel value="maybe" control={<Radio />} label={t('FORM.UNSURE')} />
+            </RadioGroup>
+          </FormControl>
+          {
+            formData.bringChildren === "yes" &&
+            <Fragment>
+              <FormControl fullWidth>
+                <InputLabel id="howManyChildren-label" htmlFor="howManyChildren">{t('FORM.HOW_MANY_CHILDREN')}</InputLabel>
+                <Select
+                  labelId="howManyChildren-label"
+                  id="howManyChildren"
+                  name="howManyChildren"
+                  value={formData.howManyChildren}
+                  label="How many?"
+                  onChange={handleChange}
+                >
+                  <StyledMenuItem activeTheme={activeTheme} value={1}>1</StyledMenuItem>
+                  <StyledMenuItem activeTheme={activeTheme} value={2}>2</StyledMenuItem>
+                  <StyledMenuItem activeTheme={activeTheme} value={3}>3</StyledMenuItem>
+                </Select>
+              </FormControl>
+              {Number(formData.howManyChildren) > 0 && Array.from({ length: Number(formData.howManyChildren) }, (_, index) => {
+                const valueName = `child${index + 1}` as const;
+                return (
+                  <TextField
+                    key={index}
+                    fullWidth
+                    sx={{ padding: '0' }}
+                    label={t('FORM.CHILD_NAME_AGE', { index: index + 1 })}
+                    name={valueName}
+                    value={formData[valueName] || ""}
+                    onChange={handleChange}
+                  />
+                )
+              })}
+            </Fragment>
+          }
+          {
+            formData.bringChildren === "maybe" &&
+            <Typography variant="body2" fontSize={20} sx={{marginTop: '-1rem'}}>
+              {t('FORM.CHILD_NOTE')}
+            </Typography>
+          }
+
+          <FormControl fullWidth required>
+            <FormLabel id="hotelRoom-label" htmlFor="hotelRoom">{t('FORM.HOTEL')}</FormLabel>
             <RadioGroup name="hotelRoom" value={formData.hotelRoom} onChange={handleChange} row>
               <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
               <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
@@ -206,19 +279,21 @@ const AttendanceForm = () => {
               </FormControl>
               <FormControl fullWidth required>
                 <FormLabel htmlFor="toDate">{t('FORM.DATE_TO')}</FormLabel>
-                <Input id="toDate" name="toDate" type="date" value={formData.toDate} onChange={handleChange} />
+                <Input id="toDate" name="toDate" type="date" value={formData.toDate} onChange={handleChange} inputProps={{
+                  min: "2026-06-07"
+                }} />
               </FormControl>
             </>
           )}
           {
             formData.hotelRoom === "maybe" &&
-            <Typography variant="body2" fontSize={20}>
+            <Typography variant="body2" fontSize={20} sx={{marginTop: '-1rem'}}>
               {t('FORM.HOTEL_NOTE')}
             </Typography>
           }
 
           <FormControl fullWidth required>
-            <FormLabel id="food">{t('FORM.FOOD')}</FormLabel>
+            <FormLabel id="food-label" htmlFor="food">{t('FORM.FOOD')}</FormLabel>
             <RadioGroup name="food" value={formData.food} onChange={handleChange} row>
               <FormControlLabel value="yes" control={<Radio />} label={t('FORM.POSITIVE')} />
               <FormControlLabel value="no" control={<Radio />} label={t('FORM.NEGATIVE')} />
