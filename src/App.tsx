@@ -19,6 +19,7 @@ function App() {
   const [hasInteracted, setHasInteracted] = useState(false);
   const { mode, switchChecked, setSwitchChecked } = useActiveTheme();
   const { t } = useTranslation();
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
   let timeoutId: number;
 
@@ -75,16 +76,31 @@ function App() {
     }
   }, [mode, hasInteracted]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const themeParam = params.get('theme');
+
+    if (themeParam === 'light') {
+      setSwitchChecked(false);
+    } else if (themeParam === 'dark') {
+      setSwitchChecked(true);
+    } else {
+      setSwitchChecked(false);
+    }
+  }, []);
+
+
   return (
     <ThemeProvider theme={getTheme(mode)}>
       <LanguageProvider>
         <Header activeTheme={mode} switchChecked={switchChecked} setSwitchChecked={setSwitchChecked} />
         <Main activeTheme={mode} />
         <Footer activeTheme={mode} handleScroll={handleScroll} />
+
         <Dialog open={dialogOpen} disableEscapeKeyDown>
-          <DialogTitle>{t('MODAL_INIT.TITLE')}</DialogTitle>
+          <DialogTitle sx={{ color: mode === 'light' ? '#000C2B' : '#FFFFFF' }}>{t('MODAL_INIT.TITLE')}</DialogTitle>
           <DialogContent>
-            <Typography>{t('MODAL_INIT.MESSAGE')}</Typography>
+            <Typography sx={{ color: mode === 'light' ? '#000C2B' : '#FFFFFF' }}>{t('MODAL_INIT.MESSAGE')}</Typography>
           </DialogContent>
           <DialogActions>
             <Button
