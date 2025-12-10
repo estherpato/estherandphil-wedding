@@ -42,7 +42,7 @@ type AttendanceFormProps = {
 
 const AttendanceForm: FC<AttendanceFormProps> = ({ activeTheme }) => {
   const { t } = useTranslation();
-  const inputNameRef = useRef('');
+  const inputNameRef = useRef<HTMLInputElement | null>(null);
 
   const postUrl = "https://script.google.com/macros/s/AKfycbxO6eov3HE12omnlPovuIaAJv71O699zwYo9wMALBu-1BkYsDanIfREfF-ab8AyaUdU/exec";
   const initialFormState: Form = {
@@ -53,7 +53,7 @@ const AttendanceForm: FC<AttendanceFormProps> = ({ activeTheme }) => {
     bringChildren: "no",
     howManyChildren: "",
     hotelRoom: "no",
-    fromDate: "",
+    fromDate: "2026-06-05",
     toDate: "",
     food: "no",
     foodRestriction: "",
@@ -101,14 +101,21 @@ const AttendanceForm: FC<AttendanceFormProps> = ({ activeTheme }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (formData.attendance === '') return;
+
+    const payload: Form = {
+      ...formData,
+      fromDate: formData.hotelRoom === 'no' ? '' : formData.fromDate,
+    };
+
     setLoading(true);
 
     try {
       const response = await fetch(postUrl, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
+        body: new URLSearchParams(payload).toString()
       });
 
       if (response?.ok) {
@@ -132,15 +139,12 @@ const AttendanceForm: FC<AttendanceFormProps> = ({ activeTheme }) => {
   };
 
   const onCloseAttendanceDialog = () => {
-    formData.attendance = 'yes';
+    setFormData(prev => ({
+      ...prev,
+      attendance: 'yes',
+    }));
     setAttendanceDialogDialog({ title: '', open: false, message: '' });
   }
-
-  useEffect(() => {
-    if (!formData.fullName && inputNameRef) {
-      inputNameRef.current = "";
-    }
-  }, [formData.fullName]);
 
   useEffect(() => {
     if (formData.attendance === 'no') {
@@ -157,6 +161,7 @@ const AttendanceForm: FC<AttendanceFormProps> = ({ activeTheme }) => {
         label={t('FORM.NAME_LABEL')}
         variant="outlined"
         onChange={handleChange}
+        value={formData.fullName}
         inputRef={inputNameRef}
       />
 
@@ -269,7 +274,7 @@ const AttendanceForm: FC<AttendanceFormProps> = ({ activeTheme }) => {
                   id="fromDate"
                   name="fromDate"
                   type="date"
-                  value={formData.fromDate || "2026-06-05"}
+                  value={formData.fromDate}
                   onChange={handleChange}
                   inputProps={{
                     min: "2026-06-05"
